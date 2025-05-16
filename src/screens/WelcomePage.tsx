@@ -5,8 +5,17 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import AppButton from "../components/atoms/AppButton";
+import { useNavigation } from "@react-navigation/native";
+import { WelcomePageStackParams } from "../utils/types";
 
 const WelcomePage = () => {
+  const navigation = useNavigation<WelcomePageStackParams>();
+  const handleLogin = () => {
+    navigation.navigate("login");
+  };
+  const handleCreateAccount = () => {
+    navigation.navigate("createAccount");
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>Welcome to EventJoy</Text>
@@ -14,13 +23,10 @@ const WelcomePage = () => {
         Create an account with us and experience seamless event planning.
       </Text>
       <View style={styles.buttonContainer}>
-        <AppButton
-          text="Crate Account"
-          onPress={() => console.log("Create Account")}
-        />
+        <AppButton text="Create Account" onPress={handleCreateAccount} />
         <AppButton
           text="Login"
-          onPress={() => console.log("Login")}
+          onPress={handleLogin}
           backgroundColor="#fff"
           textColor="#F0534F"
           borderColor="#F0534F"
@@ -48,6 +54,7 @@ const styles = StyleSheet.create({
     marginTop: hp(1.8),
     fontWeight: "medium",
     marginBottom: hp(31.5),
+    width: wp(81.1),
   },
   buttonContainer: {
     rowGap: hp(1.2),

@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { RootStackParams } from "./utils/types";
 import WelcomePage from "./screens/WelcomePage";
 import Login from "./screens/login";
+import CreateAccount from "./screens/CreateAccount";
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -17,6 +18,7 @@ const AppRoutes = () => {
       >
         <Screen name="welcomePage" component={WelcomePage} />
         <Screen name="login" component={Login} />
+        <Screen name="createAccount" component={CreateAccount} />
       </Navigator>
     </View>
   );

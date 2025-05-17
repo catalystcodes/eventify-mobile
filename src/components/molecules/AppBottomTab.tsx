@@ -21,9 +21,8 @@ const AppBottomTab = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          backgroundColor: "",
-        },
+
+        tabBarStyle: {},
       }}
     >
       <Tab.Screen
@@ -31,7 +30,11 @@ const AppBottomTab = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                alignItems: "center",
+              }}
+            >
               <RenderAppIconBottomTab name="Home" focused={focused} />
               <RenderLabel icon="Home" focused={focused} />
             </View>
@@ -57,7 +60,7 @@ const AppBottomTab = () => {
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center" }}>
               <RenderAppIconBottomTab name="Create Event" focused={focused} />
-              <RenderLabel icon="CreateEventIcon" focused={focused} />
+              <RenderLabel icon="Create Event" focused={focused} />
             </View>
           ),
         }}
@@ -67,9 +70,13 @@ const AppBottomTab = () => {
         component={Messages}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                alignItems: "center",
+              }}
+            >
               <RenderAppIconBottomTab name="Messages" focused={focused} />
-              <RenderLabel icon="MessagesIcon" focused={focused} />
+              <RenderLabel icon="Messages" focused={focused} />
             </View>
           ),
         }}
@@ -81,7 +88,7 @@ const AppBottomTab = () => {
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center" }}>
               <RenderAppIconBottomTab name="Profile" focused={focused} />
-              <RenderLabel icon="ProfileIcon" focused={focused} />
+              <RenderLabel icon="Profile" focused={focused} />
             </View>
           ),
         }}

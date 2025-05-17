@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 interface IRenderLabel {
   focused?: boolean;
@@ -19,8 +20,8 @@ const RenderLabel = ({ focused, icon }: IRenderLabel) => {
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 12,
-    fontWeight: "400",
+    fontSize: 11,
+    fontWeight: "regular",
   },
 });
 

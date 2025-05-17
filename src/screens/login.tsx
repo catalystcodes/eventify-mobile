@@ -22,7 +22,7 @@ const Login = () => {
         <View style={styles.subContainer}>
           <View style={{ rowGap: hp(1.2), marginBottom: hp(5) }}>
             <AppButton
-              text="Sign up with Google"
+              text="Login with Google"
               backgroundColor="#fff"
               textColor="#000"
               onPress={() => {}}
@@ -31,7 +31,7 @@ const Login = () => {
               fontSize={wp(3.7)}
             />
             <AppButton
-              text="Sign up with Facebook"
+              text="Login with Facebook"
               backgroundColor="#fff"
               textColor="#000"
               onPress={() => {}}
@@ -51,26 +51,14 @@ const Login = () => {
               type="password"
             />
           </View>
-          <Text style={{ fontSize: wp(3.2) }}>
-            By creating your account, you agree to the
-          </Text>
-          <View
-            style={{
-              alignItems: "center",
-              flexDirection: "row",
-              columnGap: wp(1.1),
-              marginBottom: hp(2.5),
-            }}
-          >
-            <Text style={{ fontSize: wp(3.2), color: "#F0534F" }}>
-              Terms of Service
-            </Text>
-            <Text style={{ fontSize: wp(3.2) }}>and</Text>
-            <Text style={{ fontSize: wp(3.2), color: "#F0534F" }}>
-              Privacy Policy
-            </Text>
-          </View>
+
+          <View style={{ marginTop: hp(3.7) }}></View>
           <AppButton text="Create Account" onPress={() => {}} />
+          <Text
+            style={{ fontSize: wp(3.7), color: "#F0534F", marginTop: hp(1.8) }}
+          >
+            Forgot Your Password
+          </Text>
         </View>
       </KeyboardAvoidView>
     </View>

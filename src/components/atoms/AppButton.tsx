@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View, TextStyle } from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -11,6 +11,9 @@ interface AppButtonProps {
   borderColor?: string;
   textColor?: string;
   onPress: () => void;
+  icon?: React.ReactElement;
+  fontSize?: number;
+  fontWeight?: TextStyle["fontWeight"];
 }
 
 const AppButton = ({
@@ -19,13 +22,21 @@ const AppButton = ({
   borderColor = "transparent",
   textColor = "white",
   onPress,
+  icon,
+  fontSize = wp(4.3),
+  fontWeight = "medium",
 }: AppButtonProps) => {
   return (
     <Pressable
       style={[styles.container, { backgroundColor, borderColor }]}
       onPress={onPress}
     >
-      <Text style={[styles.text, { color: textColor }]}>{text}</Text>
+      <View style={styles.content}>
+        {icon && <View style={styles.iconWrapper}>{icon}</View>}
+        <Text style={[styles.text, { color: textColor, fontSize, fontWeight }]}>
+          {text}
+        </Text>
+      </View>
     </Pressable>
   );
 };
@@ -37,6 +48,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  iconWrapper: {
+    marginRight: wp(2),
   },
   text: {
     color: "white",

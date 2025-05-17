@@ -5,6 +5,7 @@ import { RootStackParams } from "./utils/types";
 import WelcomePage from "./screens/WelcomePage";
 import Login from "./screens/login";
 import CreateAccount from "./screens/CreateAccount";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 
 const Stack = createStackNavigator<RootStackParams>();
 

@@ -12,7 +12,10 @@ import OrSection from "../components/atoms/OrSection";
 import AppInput from "../components/molecules/AppInput";
 import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
 
-const Login = () => {
+const Login = ({ navigation }: any) => {
+  const handleLogin = () => {
+    navigation.navigate("appBottomTab");
+  };
   return (
     <View style={styles.container}>
       <KeyboardAvoidView>
@@ -53,7 +56,7 @@ const Login = () => {
           </View>
 
           <View style={{ marginTop: hp(3.7) }}></View>
-          <AppButton text="Create Account" onPress={() => {}} />
+          <AppButton text="Login" onPress={handleLogin} />
           <Text
             style={{ fontSize: wp(3.7), color: "#F0534F", marginTop: hp(1.8) }}
           >

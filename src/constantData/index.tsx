@@ -26,3 +26,31 @@ export const BottomTabIcon = [
     Icon: ProfileIcon,
   },
 ] as const;
+
+export const messages = [
+  {
+    group: "Family Get-Together",
+    message: "Send a message to your guests",
+    img: require("../assets/Ellipse 18.png"),
+  },
+  {
+    group: "Asiyanbi Get-Together",
+    message: "Send a message to your guests",
+    img: require("../assets/Ellipse 18.png"),
+  },
+  {
+    group: "Catalyst et Mj",
+    message: "Send a message to your guests",
+    img: require("../assets/Ellipse 18.png"),
+  },
+  {
+    group: "Ileya Get-Together",
+    message: "Send a message to your guests",
+    img: require("../assets/Ellipse 18.png"),
+  },
+  {
+    group: "Olosho Get-Together",
+    message: "Send a message to your guests",
+    img: require("../assets/Ellipse 18.png"),
+  },
+];

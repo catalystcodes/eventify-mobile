@@ -7,6 +7,7 @@ import Login from "./screens/login";
 import CreateAccount from "./screens/CreateAccount";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 import AppBottomTab from "./components/molecules/AppBottomTab";
+import Profile from "./screens/Profile";
 
 const Stack = createStackNavigator<RootStackParams>();
 

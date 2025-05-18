@@ -16,3 +16,12 @@ export type WelcomePageStackParams = {
 export interface IconWithCustomProps extends SvgProps {
   isSelected?: boolean;
 }
+
+export type ProfileStackParams = {
+  profile: undefined;
+  editProfile: undefined;
+  contactUs: undefined;
+  notifications: undefined;
+  faq: undefined;
+  notification: undefined;
+};

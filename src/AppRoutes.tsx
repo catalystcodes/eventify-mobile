@@ -8,6 +8,7 @@ import CreateAccount from "./screens/CreateAccount";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 import AppBottomTab from "./components/molecules/AppBottomTab";
 import Profile from "./screens/Profile";
+import MessagesChat from "./screens/MessagesChat";
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -23,6 +24,7 @@ const AppRoutes = () => {
         <Screen name="appBottomTab" component={AppBottomTab} />
         <Screen name="login" component={Login} />
         <Screen name="createAccount" component={CreateAccount} />
+        <Screen name="messagesChat" component={MessagesChat} />
       </Navigator>
     </View>
   );

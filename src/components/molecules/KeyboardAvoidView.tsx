@@ -10,8 +10,7 @@ const KeyboardAvoidView = ({ children }: { children: ReactNode }) => {
       scrollToOverflowEnabled={false}
       extraScrollHeight={0}
       extraHeight={100}
-      // scrollEnabled={false}
-      enableResetScrollToCoords={false}
+      enableResetScrollToCoords={false} // scrollEnabled={false}
     >
       {children}
     </KeyboardAwareScrollView>

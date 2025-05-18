@@ -6,13 +6,17 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-const Messages = () => {
+const Messages = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Messages</Text>
       <View style={styles.messageView}>
         {messages.map((data, key) => (
-          <Pressable key={key} style={styles.messageBtn}>
+          <Pressable
+            onPress={() => navigation.navigate("messagesChat")}
+            key={key}
+            style={styles.messageBtn}
+          >
             <Image style={{ width: 60, height: 60 }} source={data.img} />
             <View style={{ display: "flex", rowGap: hp(1) }}>
               <Text style={{ fontSize: 20, fontWeight: 600 }}>

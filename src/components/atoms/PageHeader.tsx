@@ -7,13 +7,21 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-const PageHeader = () => {
+const PageHeader = ({ children }: { children?: React.ReactNode }) => {
   const navigation = useNavigation();
   return (
-    <View style={{ paddingHorizontal: wp(3.2) }}>
+    <View
+      style={{
+        paddingHorizontal: wp(3.2),
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "flex-start",
+      }}
+    >
       <Pressable onPress={() => navigation.goBack()}>
         <ArrowBack />
       </Pressable>
+      {children}
     </View>
   );
 };

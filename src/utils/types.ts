@@ -5,6 +5,7 @@ export type RootStackParams = {
   welcomePage: undefined;
   createAccount: undefined;
   appBottomTab: undefined;
+  messagesChat: undefined;
 };
 
 export type WelcomePageStackParams = {

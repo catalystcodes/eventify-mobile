@@ -29,4 +29,7 @@ export type ProfileStackParams = {
 export type EventStackParams = {
   events: undefined;
   eventOverview: undefined;
+  budget: undefined;
+  task_list: undefined;
+  guest_list: undefined;
 };

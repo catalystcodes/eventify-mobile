@@ -1,10 +1,9 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-import AvailableEvent from "../components/molecules/AvailableEvent";
 import TimerSvg from "../components/atoms/vectors/TimerSvg";
 import LocationSvg from "../components/atoms/vectors/LocationSvg";
 import DateSvg from "../components/atoms/vectors/DateSvg";
@@ -13,10 +12,19 @@ import EventMoreOptionSvg from "../components/atoms/vectors/EventMoreOptionSvg";
 import EventOverviewOptions from "../components/atoms/EventOverviewOptions";
 import { ScrollView } from "react-native-gesture-handler";
 
+import EventOptionsModal from "../components/molecules/EventOptionsModal";
+
 const EventOverview = ({ navigation }: any) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalPress = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <View>
       <Text style={styles.headerText}>Event Overview</Text>
+
       <ScrollView
         style={{ marginBottom: hp(7.4) }}
         alwaysBounceVertical={false}
@@ -100,29 +108,30 @@ const EventOverview = ({ navigation }: any) => {
               />
             </View>
 
-            <EventMoreOptionSvg />
+            <EventMoreOptionSvg onPress={handleModalPress} />
           </View>
         </View>
         <View style={styles.eventOptions}>
           <EventOverviewOptions
-            handlePress={() => {}}
+            handlePress={() => navigation.navigate("guest_list")}
             text="Guest List"
             image={require("../assets/icon (1).png")}
           />
           <EventOverviewOptions
-            handlePress={() => {}}
+            handlePress={() => navigation.navigate("task_list")}
             text="Task List"
             image={require("../assets/icon (2).png")}
           />
           <EventOverviewOptions
-            handlePress={() => {}}
+            handlePress={() => navigation.navigate("budget")}
             text="Budget"
             image={require("../assets/image 22.png")}
           />
         </View>
         <Text
           style={{
-            marginVertical: hp(7.4),
+            marginTop: hp(7.4),
+            marginBottom: hp(10),
             marginLeft: wp(5.33),
             fontWeight: "semibold",
             fontSize: hp(2.46),
@@ -133,6 +142,10 @@ const EventOverview = ({ navigation }: any) => {
           Post a Review
         </Text>
       </ScrollView>
+      <EventOptionsModal
+        showModal={showModal}
+        handleModalPress={handleModalPress}
+      />
     </View>
   );
 };

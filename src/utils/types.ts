@@ -26,3 +26,7 @@ export type ProfileStackParams = {
   faq: undefined;
   notification: undefined;
 };
+export type EventStackParams = {
+  events: undefined;
+  eventOverview: undefined;
+};

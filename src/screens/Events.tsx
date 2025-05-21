@@ -1,23 +1,30 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import HomeSection from "../components/molecules/HomeSection";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
-import TimerSvg from "../components/atoms/vectors/TimerSvg";
-import LocationSvg from "../components/atoms/vectors/LocationSvg";
+import { Calendar } from "react-native-calendars";
 import AvailableEvent from "../components/molecules/AvailableEvent";
 
-const Events = () => {
+const Events = ({ navigation }: any) => {
   const [selected, setSelected] = useState<number>(new Date().getMonth() + 1);
+  const [fullDate, setFullDate] = useState<string>("");
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Events</Text>
       <View style={styles.calendarView}>
         <Calendar
           style={styles.calendar}
+          markedDates={{
+            [fullDate]: {
+              selected: true,
+              disableTouchEvent: true,
+              selectedColor: "red",
+            },
+          }}
+          onDayPress={(current) => setFullDate(current.dateString)}
           onMonthChange={(current) => setSelected(current.month)}
         />
       </View>
@@ -30,12 +37,12 @@ const Events = () => {
             image={require("../assets/Calenda Icon.png")}
           />
         ) : (
-          <View>
+          <Pressable onPress={() => navigation.navigate("eventOverview")}>
             <Text style={{ fontSize: hp(2.5), fontWeight: "semibold" }}>
               This month
             </Text>
             <AvailableEvent img={require("../assets/Image (2).png")} />
-          </View>
+          </Pressable>
         )}
       </View>
     </View>

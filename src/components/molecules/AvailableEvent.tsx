@@ -41,7 +41,9 @@ const AvailableEvent = ({ img }: { img: ImageSourcePropType }) => {
           }}
         >
           <TimerSvg />
-          <Text style={{ fontSize: hp(1.5) }}>11:30 am - 5:00 pm</Text>
+          <Text style={{ fontSize: hp(1.5), color: "#595959" }}>
+            11:30 am - 5:00 pm
+          </Text>
         </View>
         <View
           style={{
@@ -52,7 +54,9 @@ const AvailableEvent = ({ img }: { img: ImageSourcePropType }) => {
           }}
         >
           <LocationSvg />
-          <Text style={{ fontSize: hp(1.5) }}>A5 Villa, Kochi </Text>
+          <Text style={{ fontSize: hp(1.5), color: "#595959" }}>
+            A5 Villa, Kochi{" "}
+          </Text>
         </View>
       </View>
     </View>

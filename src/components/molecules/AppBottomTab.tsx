@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../../screens/Home";
-import Events from "../../screens/Events";
 import CreateEvent from "../../screens/CreateEvent";
 import Messages from "../../screens/Messages";
 import {
@@ -12,6 +11,7 @@ import {
 import RenderAppIconBottomTab from "./RenderAppIconBottomTab";
 import RenderLabel from "../atoms/RenderLabel";
 import ProfileStack from "./ProfileStack";
+import EventStack from "./EventStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +47,7 @@ const AppBottomTab = () => {
       />
       <Tab.Screen
         name="Events"
-        component={Events}
+        component={EventStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <View

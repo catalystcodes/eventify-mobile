@@ -21,7 +21,7 @@ const ProfileSection = ({ text, onPress }: ProfileSectionProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: heightPercentageToDP(1.4),
+    paddingTop: heightPercentageToDP(2.4),
     paddingBottom: heightPercentageToDP(2.6),
     flexDirection: "row",
     alignItems: "center",

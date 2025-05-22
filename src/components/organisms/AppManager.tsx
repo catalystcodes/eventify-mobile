@@ -9,7 +9,7 @@ const AppManager = ({ children }: { children: ReactNode }) => {
     <GestureHandlerRootView>
       <SafeAreaProvider>
         <NavigationContainer>
-          <StatusBar backgroundColor="black" />
+          <StatusBar backgroundColor="#fff" />
           {children}
         </NavigationContainer>
       </SafeAreaProvider>

@@ -7,25 +7,44 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-const PageHeader = ({ children }: { children?: React.ReactNode }) => {
+interface PageHeaderProps {
+  title?: string;
+  edit?: string;
+}
+
+const PageHeader: React.FC<PageHeaderProps> = ({ title, edit }) => {
   const navigation = useNavigation();
+
   return (
-    <View
-      style={{
-        paddingHorizontal: wp(3.2),
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
-      }}
-    >
+    <View style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
         <ArrowBack />
       </Pressable>
-      {children}
+      {title && <Text style={styles.title}>{title}</Text>}
+      {edit && <Text style={styles.edit}>{edit}</Text>}
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+
+    paddingVertical: hp(2),
+  },
+  title: {
+    flex: 1,
+    fontSize: 24,
+    fontWeight: "bold",
+    marginLeft: wp(5.3),
+  },
+  edit: {
+    color: "#4CAF50",
+    fontSize: 16,
+    fontWeight: "medium",
+  },
+});
 
 export default PageHeader;

@@ -73,6 +73,7 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     marginTop: hp(4.7),
+    backgroundColor: "white",
     flexGrow: 1,
   },
   subContainer: {

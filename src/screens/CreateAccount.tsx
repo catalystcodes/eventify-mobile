@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: hp(4.7),
     flexGrow: 1,
+    backgroundColor: "white",
   },
   subContainer: {
     marginTop: hp(6.2),

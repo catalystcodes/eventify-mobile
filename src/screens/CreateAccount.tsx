@@ -16,7 +16,11 @@ const CreateAccount = () => {
   return (
     <View style={styles.container}>
       <KeyboardAvoidView>
-        <View style={{ marginTop: hp(1.3) }}>
+        <View
+          style={{
+            marginTop: hp(1.3),
+          }}
+        >
           <PageHeader />
         </View>
         <View style={styles.subContainer}>

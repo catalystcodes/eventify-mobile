@@ -14,7 +14,7 @@ const EditProfile = () => {
       <View>
         <View
           style={{
-            marginTop: hp(4.7),
+            paddingTop: hp(4.7),
             paddingVertical: hp(2),
             paddingHorizontal: wp(5.8),
             backgroundColor: "white",

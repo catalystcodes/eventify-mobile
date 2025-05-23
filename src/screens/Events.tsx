@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-// import { Calendar } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 import AvailableEvent from "../components/molecules/AvailableEvent";
 
 const Events = ({ navigation }: any) => {
@@ -15,7 +15,7 @@ const Events = ({ navigation }: any) => {
     <View style={styles.container}>
       <Text style={styles.headerText}>Events</Text>
       <View style={styles.calendarView}>
-        {/* <Calendar
+        <Calendar
           style={styles.calendar}
           markedDates={{
             [fullDate]: {
@@ -26,7 +26,7 @@ const Events = ({ navigation }: any) => {
           }}
           onDayPress={(current) => setFullDate(current.dateString)}
           onMonthChange={(current) => setSelected(current.month)}
-        /> */}
+        />
       </View>
       <View style={{ paddingHorizontal: wp(6) }}>
         {selected % 2 > 0 ? (

@@ -20,15 +20,15 @@ const EventOverview = ({ navigation }: any) => {
   const handleModalPress = () => {
     setShowModal(!showModal);
   };
+  const handleInvitationBtn = () => {
+    navigation.navigate("invitation");
+  };
 
   return (
     <View>
       <Text style={styles.headerText}>Event Overview</Text>
 
-      <ScrollView
-        style={{ marginBottom: hp(7.4) }}
-        alwaysBounceVertical={false}
-      >
+      <ScrollView style={{ marginBottom: hp(7.4) }} bounces={false}>
         <View>
           <View style={styles.eventDetails}>
             <Image
@@ -101,7 +101,7 @@ const EventOverview = ({ navigation }: any) => {
           <View style={styles.showMoreView}>
             <View style={{ flex: 1 }}>
               <AppButton
-                onPress={() => {}}
+                onPress={handleInvitationBtn}
                 text="View Invitation"
                 backgroundColor="#F0534F"
                 textColor="#FFFFFF"

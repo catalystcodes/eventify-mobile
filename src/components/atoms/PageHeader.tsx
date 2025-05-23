@@ -10,18 +10,23 @@ import {
 interface PageHeaderProps {
   title?: string;
   edit?: string;
+  children?: React.ReactNode;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, edit }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ title, edit, children }) => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => navigation.goBack()}>
+      <Pressable
+        style={{ marginLeft: wp(5.6) }}
+        onPress={() => navigation.goBack()}
+      >
         <ArrowBack />
       </Pressable>
       {title && <Text style={styles.title}>{title}</Text>}
       {edit && <Text style={styles.edit}>{edit}</Text>}
+      {children}
     </View>
   );
 };
@@ -31,7 +36,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-
     paddingVertical: hp(2),
   },
   title: {

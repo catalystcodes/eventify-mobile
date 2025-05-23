@@ -13,6 +13,8 @@ import EventOverviewOptions from "../components/atoms/EventOverviewOptions";
 import { ScrollView } from "react-native-gesture-handler";
 
 import EventOptionsModal from "../components/molecules/EventOptionsModal";
+import CalendarSvg from "../components/atoms/vectors/CalendarSvg";
+import BinSvg from "../components/atoms/vectors/BinSvg";
 
 const EventOverview = ({ navigation }: any) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,6 +25,17 @@ const EventOverview = ({ navigation }: any) => {
   const handleInvitationBtn = () => {
     navigation.navigate("invitation");
   };
+
+  const eventOptions = [
+    {
+      Icon: CalendarSvg,
+      text: "Add to Calendar",
+    },
+    {
+      Icon: BinSvg,
+      text: "Cancel Event",
+    },
+  ];
 
   return (
     <View>
@@ -145,6 +158,8 @@ const EventOverview = ({ navigation }: any) => {
       <EventOptionsModal
         showModal={showModal}
         handleModalPress={handleModalPress}
+        header="EVENT OPTIONS"
+        data={eventOptions}
       />
     </View>
   );

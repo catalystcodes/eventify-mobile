@@ -1,19 +1,31 @@
 import { View, Text, Modal, Pressable, StyleSheet } from "react-native";
 import React from "react";
-import BinSvg from "../atoms/vectors/BinSvg";
-import CalendarSvg from "../atoms/vectors/CalendarSvg";
 import CancelSvg from "../atoms/vectors/CancelSvg";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import OptionsTemplate from "../atoms/OptionsTemplate";
 
+interface Data {
+  Icon: any;
+  text: string;
+}
 interface Props {
   showModal: boolean;
   handleModalPress: () => void;
+  header: string;
+  data: Data[];
+  height?: number;
 }
 
-const EventOptionsModal = ({ showModal, handleModalPress }: Props) => {
+const EventOptionsModal = ({
+  showModal,
+  handleModalPress,
+  data,
+  header,
+  height = 24,
+}: Props) => {
   return (
     <Modal
       //   hardwareAccelerated={true}
@@ -31,7 +43,7 @@ const EventOptionsModal = ({ showModal, handleModalPress }: Props) => {
           backgroundColor: "#0000004D",
         }}
       >
-        <View style={styles.modalView}>
+        <View style={[styles.modalView, { height: hp(height) }]}>
           <View
             style={{
               display: "flex",
@@ -41,22 +53,22 @@ const EventOptionsModal = ({ showModal, handleModalPress }: Props) => {
             }}
           >
             <Text style={{ color: "#848484", fontSize: hp(2.2) }}>
-              EVENT OPTIONS
+              {header}
             </Text>
             <CancelSvg onPress={handleModalPress} />
           </View>
-          <Pressable style={[styles.calendarView, styles.options]}>
-            <CalendarSvg />
-            <Text style={{ fontWeight: "medium", fontSize: hp(2) }}>
-              Add to Calendar
-            </Text>
-          </Pressable>
-          <Pressable style={[styles.options]}>
+          <View style={styles.calendarView}>
+            {data?.map((data, ind) => (
+              <OptionsTemplate key={ind} Icon={data.Icon} text={data.text} />
+            ))}
+          </View>
+
+          {/* <Pressable style={[styles.options]}>
             <BinSvg />
             <Text style={{ fontWeight: "medium", fontSize: hp(2) }}>
               Cancel Event
             </Text>
-          </Pressable>
+          </Pressable> */}
         </View>
       </Pressable>
     </Modal>
@@ -67,7 +79,7 @@ const styles = StyleSheet.create({
   modalView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: hp(24),
+    // height: hp(height),
     position: "absolute",
     bottom: 0,
     borderTopRightRadius: 20,
@@ -75,16 +87,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp(5.5),
     paddingTop: hp(2.46),
   },
-  options: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    columnGap: hp(2.2),
-    marginLeft: wp(1.6),
-  },
   calendarView: {
     marginTop: hp(4.7),
-    marginBottom: hp(2.46),
+    display: "flex",
+    rowGap: hp(2.46),
+    // marginBottom: hp(2.46),
   },
 });
 

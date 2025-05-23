@@ -12,6 +12,10 @@ import SearchSvg from "../components/atoms/vectors/SearchSvg";
 import CancelSvg from "../components/atoms/vectors/CancelSvg";
 import GuestListTemplate from "../components/atoms/GuestListTemplate";
 import { guestData } from "../constantData";
+import EditSvg from "../components/atoms/vectors/EditSvg";
+import MessageSvg2 from "../components/atoms/vectors/MessageSvg2";
+import BinSvg from "../components/atoms/vectors/BinSvg";
+import EventOptionsModal from "../components/molecules/EventOptionsModal";
 
 interface guestDataProp {
   fullname: string;
@@ -27,6 +31,7 @@ type GuestInfoProp = {
 const GuestList = () => {
   const [showCancel, setShowCancel] = useState(false);
   const [guestInfo, setGuestInfo] = useState<GuestInfoProp>();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setGuestInfo({ filter: "All", info: guestData });
@@ -43,6 +48,25 @@ const GuestList = () => {
     });
     setGuestInfo({ filter, info: filteredGuest });
   };
+
+  const handleModalPress = () => {
+    setShowModal(!showModal);
+  };
+
+  const optionsData = [
+    {
+      Icon: EditSvg,
+      text: "Edit Contact",
+    },
+    {
+      Icon: MessageSvg2,
+      text: "Message Guest",
+    },
+    {
+      Icon: BinSvg,
+      text: "Remove Guest",
+    },
+  ];
 
   return (
     <View>
@@ -179,10 +203,21 @@ const GuestList = () => {
         </View>
         <View style={styles.guestList}>
           {guestInfo?.info.map((item, index) => (
-            <GuestListTemplate {...item} key={index} />
+            <GuestListTemplate
+              handleMoreOptions={() => setShowModal(true)}
+              {...item}
+              key={index}
+            />
           ))}
         </View>
       </ScrollView>
+      <EventOptionsModal
+        data={optionsData}
+        handleModalPress={handleModalPress}
+        showModal={showModal}
+        header="MORE OPTIONS"
+        height={29}
+      />
     </View>
   );
 };

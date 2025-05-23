@@ -10,9 +10,15 @@ interface Props {
   fullname: string;
   email: string;
   people: string;
+  handleMoreOptions: () => void;
 }
 
-const GuestListTemplate = ({ fullname, email, people }: Props) => {
+const GuestListTemplate = ({
+  fullname,
+  email,
+  people,
+  handleMoreOptions,
+}: Props) => {
   return (
     <View style={styles.container}>
       <View>
@@ -32,7 +38,10 @@ const GuestListTemplate = ({ fullname, email, people }: Props) => {
           justifyContent: "center",
         }}
       >
-        <MoreOptionsSvg style={{ marginTop: hp(1) }} onPress={() => {}} />
+        <MoreOptionsSvg
+          style={{ marginTop: hp(1) }}
+          onPress={handleMoreOptions}
+        />
         <Text
           style={{
             color:

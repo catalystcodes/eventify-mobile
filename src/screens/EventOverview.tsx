@@ -13,6 +13,8 @@ import EventOverviewOptions from "../components/atoms/EventOverviewOptions";
 import { ScrollView } from "react-native-gesture-handler";
 
 import EventOptionsModal from "../components/molecules/EventOptionsModal";
+import CalendarSvg from "../components/atoms/vectors/CalendarSvg";
+import BinSvg from "../components/atoms/vectors/BinSvg";
 
 const EventOverview = ({ navigation }: any) => {
   const [showModal, setShowModal] = useState(false);
@@ -20,15 +22,26 @@ const EventOverview = ({ navigation }: any) => {
   const handleModalPress = () => {
     setShowModal(!showModal);
   };
+  const handleInvitationBtn = () => {
+    navigation.navigate("invitation");
+  };
+
+  const eventOptions = [
+    {
+      Icon: CalendarSvg,
+      text: "Add to Calendar",
+    },
+    {
+      Icon: BinSvg,
+      text: "Cancel Event",
+    },
+  ];
 
   return (
     <View>
       <Text style={styles.headerText}>Event Overview</Text>
 
-      <ScrollView
-        style={{ marginBottom: hp(7.4) }}
-        alwaysBounceVertical={false}
-      >
+      <ScrollView style={{ marginBottom: hp(7.4) }} bounces={false}>
         <View>
           <View style={styles.eventDetails}>
             <Image
@@ -101,7 +114,7 @@ const EventOverview = ({ navigation }: any) => {
           <View style={styles.showMoreView}>
             <View style={{ flex: 1 }}>
               <AppButton
-                onPress={() => {}}
+                onPress={handleInvitationBtn}
                 text="View Invitation"
                 backgroundColor="#F0534F"
                 textColor="#FFFFFF"
@@ -145,6 +158,8 @@ const EventOverview = ({ navigation }: any) => {
       <EventOptionsModal
         showModal={showModal}
         handleModalPress={handleModalPress}
+        header="EVENT OPTIONS"
+        data={eventOptions}
       />
     </View>
   );

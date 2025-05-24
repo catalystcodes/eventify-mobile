@@ -86,7 +86,7 @@ export default CreateAccount;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: hp(4.7),
+    paddingTop: hp(4.7),
     flexGrow: 1,
     backgroundColor: "white",
   },

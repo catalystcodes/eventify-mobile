@@ -16,26 +16,31 @@ const MessagesChat = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerView}>
+        {/* <PageHeader /> */}
         <PageHeader>
           <View
             style={{
               marginLeft: wp(7.47),
+              marginTop: hp(2),
               display: "flex",
               flexDirection: "row",
-              width: "88%",
+              width: "80%",
               justifyContent: "space-between",
             }}
           >
             <View style={{ display: "flex", rowGap: hp(1) }}>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              <Text style={{ fontSize: hp(2.5), fontWeight: "bold" }}>
                 Family Get- Together
               </Text>
-              <Text style={{ fontSize: 12, fontWeight: "light" }}>
+              <Text style={{ fontSize: hp(1.5), fontWeight: "light" }}>
                 15 Participants{" "}
               </Text>
             </View>
 
-            <Pressable onPress={() => setShowMore(!showMore)}>
+            <Pressable
+              style={{ marginTop: hp(0.9) }}
+              onPress={() => setShowMore(!showMore)}
+            >
               <ShowMoreIcon />
             </Pressable>
           </View>
@@ -86,8 +91,8 @@ const styles = StyleSheet.create({
   },
   headerView: {
     position: "relative",
-    paddingTop: hp(6.52),
-    paddingBottom: hp(2),
+    paddingTop: hp(2),
+    // paddingBottom: hp(2),
     boxShadow: "0 0 4px 0 #1D1D1D20 ",
   },
   messageView: {

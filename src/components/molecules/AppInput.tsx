@@ -17,10 +17,21 @@ import HideIcon from "../atoms/vectors/HideIcon";
 type InputTextProps = TextInputProps & {
   type?: "password" | "text";
   label?: string;
+  handleChange?: (e: any) => void;
+  inputValue?: string;
+  header?: string;
 };
 
 const AppInput = (props: InputTextProps) => {
-  const { type, secureTextEntry, label, ...otherProps } = props;
+  const {
+    type,
+    secureTextEntry,
+    label,
+    inputValue,
+    handleChange,
+    header,
+    ...otherProps
+  } = props;
 
   const [hidePassword, setHidePassword] = useState(true);
 
@@ -30,6 +41,8 @@ const AppInput = (props: InputTextProps) => {
       <View>
         <TextInput
           {...otherProps}
+          // value={inputValue}
+          onChange={handleChange}
           style={[styles.inputStyle, otherProps.style]}
           secureTextEntry={type === "password" ? hidePassword : secureTextEntry}
         />

@@ -12,6 +12,7 @@ import RenderAppIconBottomTab from "./RenderAppIconBottomTab";
 import RenderLabel from "../atoms/RenderLabel";
 import ProfileStack from "./ProfileStack";
 import EventStack from "./EventStack";
+import CreateEventStack from "./CreateEventStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -60,8 +61,8 @@ const AppBottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Create Event"
-        component={CreateEvent}
+        name="CreateEventStack"
+        component={CreateEventStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <View

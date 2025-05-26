@@ -1,3 +1,4 @@
+import { type } from "os";
 import { SvgProps } from "react-native-svg";
 
 export type RootStackParams = {
@@ -34,4 +35,10 @@ export type EventStackParams = {
   budget: undefined;
   task_list: undefined;
   guest_list: undefined;
+};
+
+export type EventOverviewStackParams = {
+  navigate(arg0: string, arg1: { templateId: number }): unknown;
+  createEvent: undefined;
+  customizeDetails: undefined;
 };

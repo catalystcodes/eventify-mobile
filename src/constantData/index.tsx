@@ -180,3 +180,46 @@ export const guestData = [
     people: "Not Yet Replied",
   },
 ];
+
+export const createEventTemplate = [
+  {
+    id: 1,
+    name: "Purple Leaves Reunion Party",
+    image: require("../assets/Card1.png"),
+  },
+  {
+    id: 2,
+    name: "Themed Birthday Party",
+    image: require("../assets/Card2.png"),
+  },
+  {
+    id: 3,
+    name: "Orange Plaid Invitation",
+    image: require("../assets/Card3.png"),
+  },
+  {
+    id: 4,
+    name: "Teal White Family Pinic",
+    image: require("../assets/Card4.png"),
+  },
+  {
+    id: 5,
+    name: "Game Night Invitation",
+    image: require("../assets/Card5.png"),
+  },
+  {
+    id: 6,
+    name: "Beach Party",
+    image: require("../assets/Card6.png"),
+  },
+  {
+    id: 7,
+    name: "Masquerade Party",
+    image: require("../assets/Card7.png"),
+  },
+  {
+    id: 8,
+    name: "Feliz Navidad",
+    image: require("../assets/Car8.png"),
+  },
+];

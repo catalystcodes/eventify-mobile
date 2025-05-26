@@ -25,7 +25,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, edit, children }) => {
         <ArrowBack />
       </Pressable>
       {title && <Text style={styles.title}>{title}</Text>}
-      {edit && <Text style={styles.edit}>{edit}</Text>}
+      {edit && (
+        <Text onPress={() => navigation.goBack()} style={styles.edit}>
+          {edit}
+        </Text>
+      )}
       {children}
     </View>
   );

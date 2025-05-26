@@ -23,7 +23,7 @@ interface TaskList {
 }
 
 const TaskList = () => {
-  const [addTask, setAddTask] = useState(false);
+  const [addTask, setAddTask] = useState<boolean>(false);
   const [taskList, setTaskList] = useState<TaskList[]>([]);
   const [task, setTask] = useState({ taskName: "", addedNote: "" });
 
@@ -127,51 +127,34 @@ const TaskList = () => {
         )}
         {addTask && (
           <View>
-            <View style={{ marginBottom: hp(1) }}>
-              <Text
-                style={{
-                  fontWeight: "medium",
-                  fontSize: hp(2),
-                  color: "#595959",
-                  marginBottom: hp(1),
-                }}
-              >
-                Task Name
-              </Text>
-              <AppInput
-                inputValue={task.taskName}
-                handleChange={handleNameChange}
-                placeholder="Enter Task Name"
-                style={{
-                  fontSize: hp(1.7),
-                  paddingLeft: wp(4.26),
-                  borderColor: "#82828270",
-                }}
-              />
+            <AppInput
+              label="Task Name"
+              inputValue={task.taskName}
+              handleChange={handleNameChange}
+              placeholder="Enter Task Name"
+              style={{
+                fontSize: hp(1.7),
+                paddingLeft: wp(4.26),
+                borderColor: "#82828270",
+                backgroundColor: "#fff",
+              }}
+            />
+
+            <AppInput
+              label="Note"
+              inputValue={task.addedNote}
+              handleChange={handleNoteChange}
+              placeholder="Enter Note"
+              style={{
+                fontSize: hp(1.7),
+                paddingLeft: wp(4.26),
+                borderColor: "#82828270",
+                backgroundColor: "#fff",
+              }}
+            />
+            <View style={{ marginTop: hp(6) }}>
+              <AppButton onPress={handleAddTask} text="Add to Task List" />
             </View>
-            <View style={{ marginBottom: hp(6) }}>
-              <Text
-                style={{
-                  fontWeight: "medium",
-                  fontSize: hp(2),
-                  color: "#595959",
-                  marginBottom: hp(1),
-                }}
-              >
-                Note
-              </Text>
-              <AppInput
-                inputValue={task.addedNote}
-                handleChange={handleNoteChange}
-                placeholder="Enter Note"
-                style={{
-                  fontSize: hp(1.7),
-                  paddingLeft: wp(4.26),
-                  borderColor: "#82828270",
-                }}
-              />
-            </View>
-            <AppButton onPress={handleAddTask} text="Add to Task List" />
           </View>
         )}
       </View>

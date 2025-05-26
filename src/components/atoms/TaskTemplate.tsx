@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     columnGap: wp(2.7),
+    paddingRight: wp(8),
   },
 });
 

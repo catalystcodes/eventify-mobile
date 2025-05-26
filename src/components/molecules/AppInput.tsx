@@ -19,6 +19,7 @@ type InputTextProps = TextInputProps & {
   label?: string;
   handleChange?: (e: any) => void;
   inputValue?: string;
+  header?: string;
 };
 
 const AppInput = (props: InputTextProps) => {
@@ -28,6 +29,7 @@ const AppInput = (props: InputTextProps) => {
     label,
     inputValue,
     handleChange,
+    header,
     ...otherProps
   } = props;
 

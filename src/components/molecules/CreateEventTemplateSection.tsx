@@ -5,44 +5,7 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
-import { useNavigation } from "@react-navigation/native";
-import { EventOverviewStackParams } from "../../utils/types";
-
-const CreateEventTemplateCard = ({
-  name,
-  image,
-  id,
-}: {
-  name: string;
-  image: any;
-  id: number;
-}) => {
-  const navigation = useNavigation<EventOverviewStackParams>();
-
-  const handlePress = () => {
-    navigation.navigate("customizeDetails", { templateId: id });
-  };
-  return (
-    <Pressable
-      onPress={handlePress}
-      style={{
-        width: widthPercentageToDP(41.1),
-        rowGap: heightPercentageToDP(1.1),
-      }}
-    >
-      <Image source={image} />
-      <Text
-        style={{
-          paddingHorizontal: widthPercentageToDP(1.3),
-          fontSize: 16,
-          fontWeight: "medium",
-        }}
-      >
-        {name}
-      </Text>
-    </Pressable>
-  );
-};
+import CreateEventTemplateCard from "./CreateEventTemplateCard";
 
 const CreateEventTemplateSection = () => {
   return (
@@ -69,7 +32,7 @@ const CreateEventTemplateSection = () => {
         }}
       >
         {createEventTemplate.map((item, index) => (
-          <CreateEventTemplateCard {...item} />
+          <CreateEventTemplateCard {...item} key={index} />
         ))}
       </View>
     </View>

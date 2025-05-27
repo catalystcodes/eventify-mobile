@@ -38,7 +38,14 @@ export type EventStackParams = {
 };
 
 export type EventOverviewStackParams = {
-  navigate(arg0: string, arg1: { templateId: number }): unknown;
+  navigate(
+    arg0: string,
+    arg1: { templateId: number; name: string; image: any }
+  ): unknown;
   createEvent: undefined;
-  customizeDetails: undefined;
+  customizeDetails: {
+    templateId: number;
+    name: string;
+    image: any;
+  };
 };

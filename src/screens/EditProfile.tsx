@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
 import {
@@ -7,8 +7,11 @@ import {
 } from "react-native-responsive-screen";
 import AppInput from "../components/molecules/AppInput";
 import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
+import CountryDropdown from "../components/molecules/DropDownInput";
 
 const EditProfile = () => {
+  const [selected, setSelected] = useState("India");
+
   return (
     <KeyboardAvoidView>
       <View>
@@ -29,19 +32,43 @@ const EditProfile = () => {
           <View style={styles.editDetails}>
             <View style={styles.editNames}>
               <AppInput
-                style={{ flexGrow: 1, width: wp(42.7) }}
+                style={{
+                  flexGrow: 1,
+                  width: wp(42.7),
+                  backgroundColor: "white",
+                }}
                 label="First Name"
                 placeholder="Dylan"
               />
 
               <AppInput
-                style={{ flexGrow: 1, width: wp(42.7) }}
+                style={{
+                  flexGrow: 1,
+                  width: wp(42.7),
+                  backgroundColor: "white",
+                }}
                 label="Last Name"
                 placeholder="Thomas"
               />
             </View>
-            <AppInput label="E-mail" placeholder="dylanthomas@server.com" />
-            <AppInput label="Country" placeholder="dylanthomas@server.com" />
+            <AppInput
+              style={{ backgroundColor: "white" }}
+              label="E-mail"
+              placeholder="dylanthomas@server.com"
+            />
+
+            <CountryDropdown
+              selectedItem={selected}
+              onSelect={setSelected}
+              dropdownItems={[
+                "United States",
+                "India",
+                "Canada",
+                "United Kingdom",
+                "South Africa",
+                "Germany",
+              ]}
+            />
             <View>
               <Text style={{ marginBottom: hp(0.5) }}>Phone Number</Text>
               <View
@@ -70,7 +97,13 @@ const EditProfile = () => {
                     <Image source={require("../assets/Countryflag.png")} />
                   </View>
 
-                  <Text style={{ paddingHorizontal: wp(1.6) }}>+91</Text>
+                  <Text
+                    style={{
+                      paddingHorizontal: wp(1.6),
+                    }}
+                  >
+                    +91
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -80,6 +113,7 @@ const EditProfile = () => {
                     paddingVertical: hp(2),
                     paddingHorizontal: wp(4.3),
                     width: wp(63.5),
+                    backgroundColor: "white",
                   }}
                 >
                   <TextInput placeholder="Enter phone number" />
@@ -104,7 +138,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     columnGap: wp(4),
   },
-  editDetails: {},
+  editDetails: {
+    rowGap: hp(3.7),
+  },
 });
 
 export default EditProfile;

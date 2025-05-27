@@ -14,6 +14,7 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import EditIcon from "../components/atoms/vectors/EditIcon";
+import AppButton from "../components/atoms/AppButton";
 
 const TemplateSeven = ({ name, setName, image }: any) => {
   return (
@@ -50,6 +51,13 @@ const TemplateSeven = ({ name, setName, image }: any) => {
           <EditIcon />
         </View>
         <TextInput value={name} onChangeText={setName} style={[styles.input]} />
+      </View>
+      <View style={{ paddingHorizontal: wp(5.3) }}>
+        <AppButton
+          text="Next: Event Details"
+          onPress={() => {}}
+          backgroundColor="#bfb7b6"
+        />
       </View>
     </View>
   );

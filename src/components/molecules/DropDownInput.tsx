@@ -1,32 +1,26 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Animated,
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import DropDown from "../atoms/vectors/DropDown";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 
-const countries = [
-  "United States",
-  "India",
-  "Canada",
-  "United Kingdom",
-  "South Africa",
-  "Germany",
-];
+type CountryDropdownProps = {
+  selectedItem: string;
+  onSelect: (item: string) => void;
+  dropdownItems: string[];
+};
 
-const CountryDropdown: React.FC = () => {
-  const [selectedCountry, setSelectedCountry] = useState("India");
+const CountryDropdown: React.FC<CountryDropdownProps> = ({
+  selectedItem,
+  onSelect,
+  dropdownItems,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const handleSelect = (country: string) => {
-    setSelectedCountry(country);
+  const handleSelect = (item: string) => {
+    onSelect(item);
     setShowDropdown(false);
   };
 
@@ -39,7 +33,7 @@ const CountryDropdown: React.FC = () => {
         onPress={() => setShowDropdown((prev) => !prev)}
         activeOpacity={0.8}
       >
-        <Text style={styles.selectedText}>{selectedCountry}</Text>
+        <Text style={styles.selectedText}>{selectedItem}</Text>
         <DropDown
           style={{
             transform: [{ rotate: showDropdown ? "180deg" : "0deg" }],
@@ -49,13 +43,13 @@ const CountryDropdown: React.FC = () => {
 
       {showDropdown && (
         <View style={styles.dropdownList}>
-          {countries.map((country) => (
+          {dropdownItems.map((item) => (
             <TouchableOpacity
-              key={country}
+              key={item}
               style={styles.dropdownItem}
-              onPress={() => handleSelect(country)}
+              onPress={() => handleSelect(item)}
             >
-              <Text style={styles.dropdownItemText}>{country}</Text>
+              <Text style={styles.dropdownItemText}>{item}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -67,9 +61,7 @@ const CountryDropdown: React.FC = () => {
 export default CountryDropdown;
 
 const styles = StyleSheet.create({
-  container: {
-    // margin: 16,
-  },
+  container: {},
   label: {
     fontSize: hp(1.7),
     marginBottom: hp(0.5),
@@ -104,7 +96,6 @@ const styles = StyleSheet.create({
   },
   dropdownItemText: {
     fontSize: hp(1.7),
-
     color: "#333",
   },
 });

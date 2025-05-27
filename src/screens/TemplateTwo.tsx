@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -14,8 +14,11 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import EditIcon from "../components/atoms/vectors/EditIcon";
+import AppButton from "../components/atoms/AppButton";
 
 const TemplateTwo = ({ name, setName, image }: any) => {
+  const [isEditable, setIsEditable] = useState(false);
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -49,7 +52,19 @@ const TemplateTwo = ({ name, setName, image }: any) => {
         >
           <EditIcon />
         </View>
-        <TextInput value={name} onChangeText={setName} style={[styles.input]} />
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          style={[styles.input]}
+          editable={isEditable}
+        />
+      </View>
+      <View style={{ paddingHorizontal: wp(5.3) }}>
+        <AppButton
+          text="Next: Event Details"
+          onPress={() => {}}
+          backgroundColor={isEditable ? "#F0534F" : "#bfb7b6"}
+        />
       </View>
     </View>
   );

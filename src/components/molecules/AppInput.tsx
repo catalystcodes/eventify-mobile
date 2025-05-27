@@ -36,12 +36,11 @@ const AppInput = (props: InputTextProps) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
-    <View style={{ marginBottom: hp(2) }}>
+    <View style={{}}>
       {label ? <Text style={styles.labelStyle}>{label}</Text> : null}
       <View>
         <TextInput
           {...otherProps}
-          // value={inputValue}
           onChange={handleChange}
           style={[styles.inputStyle, otherProps.style]}
           secureTextEntry={type === "password" ? hidePassword : secureTextEntry}

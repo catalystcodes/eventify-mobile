@@ -67,9 +67,7 @@ const EditProfile = () => {
                       paddingVertical: hp(1.6),
                     }}
                   >
-                    <Image
-                      source={require("../assets/Input field/Country flag.png")}
-                    />
+                    <Image source={require("../assets/Country flag.png")} />
                   </View>
 
                   <Text style={{ paddingHorizontal: wp(1.6) }}>+91</Text>

@@ -1,4 +1,11 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  NativeSyntheticEvent,
+  TextInputChangeEventData,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import PageHeader from "../components/atoms/PageHeader";
 import ShowMoreIcon from "../components/atoms/vectors/ShowMoreIcon";
@@ -30,7 +37,10 @@ type GuestInfoProp = {
 
 const GuestList = () => {
   const [showCancel, setShowCancel] = useState(false);
-  const [guestInfo, setGuestInfo] = useState<GuestInfoProp>();
+  const [guestInfo, setGuestInfo] = useState<GuestInfoProp>({
+    filter: "",
+    info: [],
+  });
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -67,6 +77,26 @@ const GuestList = () => {
       text: "Remove Guest",
     },
   ];
+  const handleInputChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>
+  ) => {
+    const filteredData = guestData?.filter((data) =>
+      data.fullname.includes(e.nativeEvent.text)
+    );
+    const filterWith = guestInfo.filter;
+    const searchFilteredData = filteredData.filter((info) => {
+      if (filterWith === "All") {
+        return filteredData;
+      } else if (filterWith === "Yes") {
+        return info.people.includes("Adult");
+      }
+      return info.people === filterWith;
+    });
+    setGuestInfo((prev) => ({
+      filter: prev?.filter,
+      info: searchFilteredData,
+    }));
+  };
 
   return (
     <View>
@@ -197,7 +227,7 @@ const GuestList = () => {
             placeholder="Search Contacts"
             onFocus={() => setShowCancel(true)}
             onBlur={() => setShowCancel(false)}
-            onChange={() => {}}
+            onChange={handleInputChange}
           />
           {showCancel && <CancelSvg />}
         </View>

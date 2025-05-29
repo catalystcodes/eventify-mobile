@@ -1,30 +1,43 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  Image,
+  TextProps,
+  ImageSourcePropType,
+} from "react-native";
 import { Calendar } from "react-native-calendars";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-interface DateDropdownPickerProps {
+type DateDropdownPickerProps = TextProps & {
   label: string;
   value: string;
   onChange: (date: string) => void;
-}
+  img?: ImageSourcePropType;
+  fontSize?: any;
+};
 
 const DateDropdownPicker = ({
   label,
   value,
   onChange,
+  img,
+  fontSize,
+  ...otherProps
 }: DateDropdownPickerProps) => {
   const [showCalendar, setShowCalendar] = useState(false);
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, { fontSize: fontSize }]}>{label}</Text>
 
       <Pressable
-        style={styles.inputBox}
+        style={[styles.inputBox, otherProps.style]}
         onPress={() => setShowCalendar(!showCalendar)}
       >
         <View
@@ -38,7 +51,7 @@ const DateDropdownPicker = ({
             borderBottomLeftRadius: 6,
           }}
         >
-          <Image source={require("../../assets/CalenderIcon.png")} />
+          <Image source={img || require("../../assets/CalenderIcon.png")} />
         </View>
         <Text style={styles.inputText}>{value || "DD/MM/YY"}</Text>
       </Pressable>

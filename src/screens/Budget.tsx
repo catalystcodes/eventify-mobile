@@ -8,10 +8,10 @@ import PageHeader from "../components/atoms/PageHeader";
 import ArrowBack from "../components/atoms/vectors/ArrowBack";
 import { ScrollView } from "react-native-gesture-handler";
 import AppInput from "../components/molecules/AppInput";
-import App from "../../App";
 import AppButton from "../components/atoms/AppButton";
 import PlusIcon from "../components/atoms/vectors/PlusIcon";
 import ArrowDownSvg from "../components/atoms/vectors/ArrowDownSvg";
+import DateDropdownPicker from "../components/molecules/DateDropdownPicker";
 
 type RenderProp = "Budget" | "addBudget" | "addPayment";
 
@@ -174,8 +174,27 @@ const Budget = () => {
             </View>
           )}
           {contentRender === "addPayment" && (
-            <View>
-              <Text></Text>
+            <View style={styles.addPaymentView}>
+              <AppInput
+                label="Name"
+                placeholder="Enter Name"
+                style={styles.input}
+              />
+              <AppInput
+                label="Amount"
+                placeholder="Enter Amount"
+                style={styles.input}
+              />
+              <DateDropdownPicker
+                label="Purchase Date"
+                value="DD/MM/YY"
+                onChange={() => {}}
+                style={{ width: "100%", marginTop: hp(0.7) }}
+                fontSize={hp(1.7)}
+              />
+              <View style={{ marginTop: hp(4.2) }}>
+                <AppButton onPress={() => {}} text="Add to Payments" />
+              </View>
             </View>
           )}
         </View>
@@ -247,6 +266,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: "#82828270",
     borderWidth: 1,
+  },
+  addPaymentView: {
+    display: "flex",
+    rowGap: hp(3.2),
   },
 });
 

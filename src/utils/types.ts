@@ -49,4 +49,5 @@ export type EventOverviewStackParams = {
     name: string;
     image: any;
   };
+  initialPreview: undefined;
 };

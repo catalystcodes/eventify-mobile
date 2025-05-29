@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
 import ProgressGauge from "../components/atoms/ProgressGauge";
 import {
@@ -14,19 +14,20 @@ import { Calendar } from "react-native-calendars";
 import EventTimingDropdown from "../components/molecules/DateDropdownPicker";
 import DateDropdownPicker from "../components/molecules/DateDropdownPicker";
 import TimeDropdownPicker from "../components/molecules/TimeDropdownPicker";
+import Toggle from "../components/molecules/Toggle";
+import AppButton from "../components/atoms/AppButton";
+import { EventOverviewStackParams } from "../utils/types";
+import { useNavigation } from "@react-navigation/native";
+import { TextInput } from "react-native-gesture-handler";
 
 const EventDetails = () => {
   const [selected, setSelected] = useState("Select event type");
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<string>("");
-  const [selectedTime, setSelectedTime] = useState<string>("");
+  const [selectedStartDate, setSelectedStartDate] = useState<string>("");
+  const [selectedEndDate, setSelectedEndDate] = useState<string>("");
+  const [selectedStartTime, setSelectedStartTime] = useState<string>("");
+  const [selectedEndTime, setSelectedEndTime] = useState<string>("");
 
-  const handleDatePress = () => setShowDatePicker(true);
-  const handleTimePress = () => setShowTimePicker(true);
-
-  const formatTime = (date: Date) =>
-    date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const navigation = useNavigation<EventOverviewStackParams>();
 
   return (
     <View style={{ flex: 1 }}>
@@ -108,13 +109,13 @@ const EventDetails = () => {
         >
           <DateDropdownPicker
             label="Start Date"
-            value={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
+            value={selectedStartDate}
+            onChange={(date) => setSelectedStartDate(date)}
           />
           <TimeDropdownPicker
             label="Start Time"
-            value={selectedTime}
-            onChange={(time) => setSelectedTime(time)}
+            value={selectedStartTime}
+            onChange={(time) => setSelectedStartTime(time)}
           />
         </View>
         <View
@@ -126,22 +127,95 @@ const EventDetails = () => {
           }}
         >
           <DateDropdownPicker
-            label="Start Date"
-            value={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
+            label="End Date"
+            value={selectedEndDate}
+            onChange={(date) => setSelectedEndDate(date)}
           />
           <TimeDropdownPicker
-            label="Start Time"
-            value={selectedTime}
-            onChange={(time) => setSelectedTime(time)}
+            label="End Time"
+            value={selectedEndTime}
+            onChange={(time) => setSelectedEndTime(time)}
           />
         </View>
         <View style={{ paddingHorizontal: wp(5.3) }}>
-          <AppInput label="Hosted By" placeholder="Enter host name" />
-          <View>
-            <Text></Text>
-            <View>
-              <Text></Text>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "medium",
+              marginBottom: hp(0.5),
+            }}
+          >
+            Location
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              borderRadius: 6,
+              borderColor: "#ACACAC",
+              borderWidth: 1,
+            }}
+          >
+            <View
+              style={{
+                paddingHorizontal: wp(4.3),
+                paddingVertical: hp(1.7),
+                backgroundColor: "#eeeeee",
+                borderTopLeftRadius: 6,
+                borderBottomLeftRadius: 6,
+                borderRightColor: "#ACACAC",
+                borderRightWidth: 1,
+              }}
+            >
+              <Image source={require("../assets/Location icon.png")} />
+            </View>
+            <TextInput
+              placeholder="Location"
+              style={{
+                backgroundColor: "white",
+                height: hp(5.2),
+                width: wp(75),
+                paddingHorizontal: wp(3.2),
+              }}
+            />
+          </View>
+          <View style={{ marginTop: hp(3.7) }}></View>
+          <AppInput
+            label="Hosted By"
+            placeholder="Enter host name"
+            style={{ backgroundColor: "white" }}
+          />
+          <View style={{ marginTop: hp(8.3) }}>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "medium",
+                marginBottom: hp(1),
+              }}
+            >
+              Guest Options
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                columnGap: wp(5),
+                marginBottom: hp(4.8),
+              }}
+            >
+              <Text style={{ width: wp(72) }}>
+                Hide the guest list from attendees for this event
+              </Text>
+              <Toggle />
+            </View>
+            <View style={{ marginBottom: hp(3.8) }}>
+              <AppButton
+                text="Next: Preview"
+                onPress={() => {
+                  navigation.navigate("initialPreview");
+                }}
+              />
             </View>
           </View>
         </View>

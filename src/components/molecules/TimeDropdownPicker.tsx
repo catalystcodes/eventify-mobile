@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, Image } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 interface TimeDropdownPickerProps {
   label: string;
@@ -26,6 +30,19 @@ const TimeDropdownPicker = ({
         style={styles.inputBox}
         onPress={() => setShowDropdown(!showDropdown)}
       >
+        <View
+          style={{
+            paddingHorizontal: wp(3.5),
+            paddingVertical: hp(1.6),
+            backgroundColor: "#EEEEEE",
+            borderRightWidth: 1,
+            borderColor: "#ACACAC",
+            borderTopLeftRadius: 6,
+            borderBottomLeftRadius: 6,
+          }}
+        >
+          <Image source={require("../../assets/TimeIcon.png")} />
+        </View>
         <Text style={styles.inputText}>{value || "12:00 AM"}</Text>
       </Pressable>
 
@@ -85,13 +102,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
-    padding: 12,
-    width: 160,
+    width: wp(42),
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "white",
   },
   inputText: {
     fontSize: 16,
-    color: "#333",
+    color: "#ACACAC",
+    paddingHorizontal: wp(3.2),
   },
   dropdownContainer: {
     position: "absolute",

@@ -43,6 +43,7 @@ export type EventOverviewStackParams = {
     arg1: { templateId: number; name: string; image: any }
   ): unknown;
   createEvent: undefined;
+  eventDetails: undefined;
   customizeDetails: {
     templateId: number;
     name: string;

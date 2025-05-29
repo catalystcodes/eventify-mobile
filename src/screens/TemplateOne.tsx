@@ -3,8 +3,9 @@ import {
   View,
   TextInput,
   StyleSheet,
-  ImageBackground,
   Image,
+  Pressable,
+  Alert,
 } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
 import {
@@ -15,9 +16,17 @@ import {
 } from "react-native-responsive-screen";
 import EditIcon from "../components/atoms/vectors/EditIcon";
 import AppButton from "../components/atoms/AppButton";
+import ProgressGauge from "../components/atoms/ProgressGauge";
+import { useNavigation } from "@react-navigation/native";
+import { EventOverviewStackParams } from "../utils/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+type EventOverviewNavigationProp =
+  NativeStackNavigationProp<EventOverviewStackParams>;
 
 const TemplateOne = ({ name, setName, image }: any) => {
   const [isEditable, setIsEditable] = useState(false);
+  const navigation = useNavigation<EventOverviewNavigationProp>();
 
   return (
     <View style={{ flex: 1 }}>
@@ -31,6 +40,7 @@ const TemplateOne = ({ name, setName, image }: any) => {
       >
         <PageHeader title="1 of 5: Customize" />
       </View>
+      <ProgressGauge currentPhase={1} totalPhases={5} />
       <View
         style={{
           alignItems: "center",
@@ -40,7 +50,8 @@ const TemplateOne = ({ name, setName, image }: any) => {
         }}
       >
         <Image source={require("../assets/BigCard1.png")} />
-        <View
+        <Pressable
+          onPress={() => setIsEditable(!isEditable)}
           style={{
             opacity: 0.2,
             paddingVertical: hp(1.2),
@@ -50,7 +61,7 @@ const TemplateOne = ({ name, setName, image }: any) => {
           }}
         >
           <EditIcon />
-        </View>
+        </Pressable>
         <TextInput
           value={name}
           onChangeText={setName}
@@ -60,8 +71,14 @@ const TemplateOne = ({ name, setName, image }: any) => {
       </View>
       <View style={{ paddingHorizontal: wp(5.3) }}>
         <AppButton
+          onPress={() => {
+            if (isEditable) {
+              navigation.navigate("eventDetails");
+            } else {
+              alert("Won't you like to edit your event name first? 🤨");
+            }
+          }}
           text="Next: Event Details"
-          onPress={() => {}}
           backgroundColor={isEditable ? "#F0534F" : "#bfb7b6"}
         />
       </View>

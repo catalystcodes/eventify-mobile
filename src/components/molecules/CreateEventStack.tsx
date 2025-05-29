@@ -4,6 +4,7 @@ import { EventOverviewStackParams } from "../../utils/types";
 import { createStackNavigator } from "@react-navigation/stack";
 import CreateEvent from "../../screens/CreateEvent";
 import CustomizeDetailsScreen from "../../screens/CustomizeDetailsScreen";
+import EventDetails from "../../screens/EventDetails";
 
 const Stack = createStackNavigator<EventOverviewStackParams>();
 
@@ -18,6 +19,7 @@ const CreateEventStack = () => {
       >
         <Screen name="createEvent" component={CreateEvent} />
         <Screen name="customizeDetails" component={CustomizeDetailsScreen} />
+        <Screen name="eventDetails" component={EventDetails} />
       </Navigator>
     </View>
   );

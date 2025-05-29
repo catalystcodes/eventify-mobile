@@ -16,9 +16,18 @@ import {
 } from "react-native-responsive-screen";
 import EditIcon from "../components/atoms/vectors/EditIcon";
 import AppButton from "../components/atoms/AppButton";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { EventOverviewStackParams } from "../utils/types";
+import { useNavigation } from "@react-navigation/native";
+import ProgressGauge from "../components/atoms/ProgressGauge";
+
+type EventOverviewNavigationProp =
+  NativeStackNavigationProp<EventOverviewStackParams>;
 
 const TemplateFour = ({ name, setName, image }: any) => {
   const [isEditable, setIsEditable] = useState(false);
+  const navigation = useNavigation<EventOverviewNavigationProp>();
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -31,6 +40,8 @@ const TemplateFour = ({ name, setName, image }: any) => {
       >
         <PageHeader title="1 of 5: Customize" />
       </View>
+      <ProgressGauge currentPhase={1} totalPhases={5} />
+
       <View
         style={{
           alignItems: "center",
@@ -49,7 +60,7 @@ const TemplateFour = ({ name, setName, image }: any) => {
             position: "absolute",
             right: 54,
           }}
-          onPress={() => setIsEditable(true)}
+          onPress={() => setIsEditable(!isEditable)}
         >
           <EditIcon />
         </Pressable>
@@ -63,7 +74,13 @@ const TemplateFour = ({ name, setName, image }: any) => {
       <View style={{ paddingHorizontal: wp(5.3) }}>
         <AppButton
           text="Next: Event Details"
-          onPress={() => {}}
+          onPress={() => {
+            if (isEditable) {
+              navigation.navigate("eventDetails");
+            } else {
+              alert("Won't you like to edit your event name first? 🤨");
+            }
+          }}
           backgroundColor={isEditable ? "#F0534F" : "#bfb7b6"}
         />
       </View>

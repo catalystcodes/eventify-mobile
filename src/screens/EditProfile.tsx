@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import AppInput from "../components/molecules/AppInput";
 import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
-import CountryDropdown from "../components/molecules/DropDownInput";
+import ItemDropDown from "../components/molecules/DropDownInput";
 
 const EditProfile = () => {
   const [selected, setSelected] = useState("India");
@@ -57,7 +57,8 @@ const EditProfile = () => {
               placeholder="dylanthomas@server.com"
             />
 
-            <CountryDropdown
+            <ItemDropDown
+              label="Country"
               selectedItem={selected}
               onSelect={setSelected}
               dropdownItems={[

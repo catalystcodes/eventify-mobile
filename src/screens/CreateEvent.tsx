@@ -7,6 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import CreateEventTemplateSection from "../components/molecules/CreateEventTemplateSection";
 import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
+import ProgressGauge from "../components/atoms/ProgressGauge";
 
 const CreateEvent = () => {
   return (
@@ -20,6 +21,7 @@ const CreateEvent = () => {
       >
         <PageHeader title="1 of 5: Customize" />
       </View>
+      <ProgressGauge currentPhase={1} totalPhases={5} />
       <KeyboardAvoidView>
         <CreateEventTemplateSection />
       </KeyboardAvoidView>

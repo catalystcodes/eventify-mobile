@@ -7,15 +7,17 @@ import {
 } from "react-native-responsive-screen";
 
 type CountryDropdownProps = {
+  label: string;
   selectedItem: string;
   onSelect: (item: string) => void;
   dropdownItems: string[];
 };
 
-const CountryDropdown: React.FC<CountryDropdownProps> = ({
+const ItemDropDown: React.FC<CountryDropdownProps> = ({
   selectedItem,
   onSelect,
   dropdownItems,
+  label,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -26,7 +28,7 @@ const CountryDropdown: React.FC<CountryDropdownProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Country</Text>
+      <Text style={styles.label}>{label}</Text>
 
       <TouchableOpacity
         style={styles.dropdown}
@@ -58,7 +60,7 @@ const CountryDropdown: React.FC<CountryDropdownProps> = ({
   );
 };
 
-export default CountryDropdown;
+export default ItemDropDown;
 
 const styles = StyleSheet.create({
   container: {},

@@ -34,6 +34,8 @@ const DateDropdownPicker = ({
             backgroundColor: "#EEEEEE",
             borderRightWidth: 1,
             borderColor: "#ACACAC",
+            borderTopLeftRadius: 6,
+            borderBottomLeftRadius: 6,
           }}
         >
           <Image source={require("../../assets/CalenderIcon.png")} />

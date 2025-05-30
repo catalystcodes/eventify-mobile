@@ -38,6 +38,7 @@ export type EventStackParams = {
 };
 
 export type EventOverviewStackParams = {
+  goBack(): unknown;
   pop(arg0: number): unknown;
   navigate(arg0: string): unknown;
   createEvent: undefined;
@@ -52,5 +53,6 @@ export type EventOverviewStackParams = {
     name: string;
     image: any;
   };
-  addGuest: undefined;
+  addGuests: undefined;
+  createContact: undefined;
 };

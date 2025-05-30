@@ -228,7 +228,12 @@ const InitialPreview = () => {
               ))}
             </View>
             <View style={{ marginBottom: hp(2.5) }}>
-              <AppButton text="Next: Add Guests" onPress={() => {}} />
+              <AppButton
+                text="Next: Add Guests"
+                onPress={() => {
+                  navigation.navigate("addGuests");
+                }}
+              />
             </View>
           </View>
         </KeyboardAvoidView>

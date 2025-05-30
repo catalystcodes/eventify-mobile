@@ -236,12 +236,14 @@ const Budget = () => {
                   label="Name"
                   placeholder="Enter Name"
                   style={styles.input}
+                  value={budgetFormData.name}
                   handleChange={handleBudgetNameChange}
                 />
                 <AppInput
                   label="Note"
                   placeholder="Enter Note"
                   style={styles.input}
+                  value={budgetFormData.note}
                   handleChange={handleBudgetNoteChange}
                 />
                 <AppInput
@@ -249,6 +251,7 @@ const Budget = () => {
                   label="Estimated Amount"
                   placeholder="Enter estimated amount"
                   style={styles.input}
+                  value={budgetFormData.estimatedAmount}
                   handleChange={handleBudgetAmountChange}
                 />
                 <View>
@@ -388,11 +391,7 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.9),
     marginVertical: hp(2),
   },
-  // budgetListView: {
-  //   marginBottom: hp(2.5),
-  //   display: "flex",
-  //   rowGap: hp(2.5),
-  // },
+
   noBudgetView: {
     marginTop: hp(25),
     width: "100%",

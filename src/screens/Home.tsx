@@ -10,7 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const Home = ({ navigation }: any) => {
   const handlePlanEvent = () => {
-    navigation.navigate("Events");
+    navigation.navigate("CreateEventStack");
   };
 
   return (

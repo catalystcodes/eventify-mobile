@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  NativeSyntheticEvent,
+  TextInputChangeEventData,
+} from "react-native";
 import React, { useState } from "react";
 import {
   heightPercentageToDP as hp,
@@ -12,6 +19,8 @@ import AppButton from "../components/atoms/AppButton";
 import PlusIcon from "../components/atoms/vectors/PlusIcon";
 import ArrowDownSvg from "../components/atoms/vectors/ArrowDownSvg";
 import DateDropdownPicker from "../components/molecules/DateDropdownPicker";
+import PaymentTemplate from "../components/molecules/PaymentTemplate";
+import BudgetTemplate from "../components/molecules/BudgetTemplate";
 
 type RenderProp = "Budget" | "addBudget" | "addPayment";
 
@@ -22,11 +31,109 @@ interface BudgetListProp {
   amountPaid: string;
   amountPending: string;
 }
+interface PaymentProp {
+  name: string;
+  amount: string;
+  date: string;
+}
 
 const Budget = () => {
   const [contentRender, setContentRender] = useState<RenderProp>("Budget");
   const [budgetList, setBudgetList] = useState<BudgetListProp[]>([]);
-  const [payment, setPayment] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
+  const [payment, setPayment] = useState<PaymentProp[]>([]);
+  const [budgetFormData, setBudgetFormData] = useState({
+    name: "",
+    note: "",
+    estimatedAmount: "",
+    // balance: "",
+  });
+  const [paymentFormData, setPaymentFormData] = useState({
+    name: "",
+    amount: "",
+    date: "",
+  });
+
+  const handleNameChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>
+  ) => {
+    setPaymentFormData({ ...paymentFormData, name: e.nativeEvent.text });
+  };
+  const handleAmountChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>
+  ) => {
+    setPaymentFormData({ ...paymentFormData, amount: e.nativeEvent.text });
+  };
+  const handleBudgetNameChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>
+  ) => {
+    setBudgetFormData({ ...budgetFormData, name: e.nativeEvent.text });
+  };
+  const handleBudgetNoteChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>
+  ) => {
+    setBudgetFormData({ ...budgetFormData, note: e.nativeEvent.text });
+  };
+  const handleBudgetAmountChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>
+  ) => {
+    setBudgetFormData({
+      ...budgetFormData,
+      estimatedAmount: e.nativeEvent.text,
+    });
+  };
+
+  const handleAddPayment = () => {
+    if (
+      !budgetFormData.name.trim().length ||
+      !budgetFormData.estimatedAmount.trim().length
+    ) {
+      alert("Fill form before adding payment");
+      return;
+    } else if (payment.length) {
+      alert("Only one payment can be added,Sorry my gee");
+      return;
+    }
+    setContentRender("addPayment");
+  };
+
+  const handleButtonPress = () => {
+    if (
+      !paymentFormData.amount.trim().length ||
+      !paymentFormData.name.trim().length ||
+      !paymentFormData.date.trim().length
+    ) {
+      return alert("Abeg fill this form now ogami!!");
+    }
+    setPayment([...payment, paymentFormData]);
+    setContentRender("addBudget");
+    setPaymentFormData({ amount: "", date: "", name: "" });
+  };
+
+  const handleAddBudget = () => {
+    if (
+      !budgetFormData.name.trim().length ||
+      !budgetFormData.estimatedAmount.trim().length
+    ) {
+      alert("Pls fill the name and amount on the form above");
+      return;
+    } else if (!payment.length) {
+      alert("Pls add payment to continue chief");
+      return;
+    }
+
+    setBudgetList([
+      ...budgetList,
+      {
+        ...budgetFormData,
+        amountPaid: isChecked ? payment[0].amount : "0",
+        amountPending: !isChecked ? payment[0].amount : "0",
+      },
+    ]);
+    setContentRender("Budget");
+    setPayment([]);
+    setBudgetFormData({ estimatedAmount: "", name: "", note: "" });
+  };
 
   return (
     <View>
@@ -66,8 +173,16 @@ const Budget = () => {
           {contentRender === "Budget" && (
             <View>
               {budgetList.length && (
-                <View>
-                  <Text></Text>
+                <View
+                  style={{
+                    display: "flex",
+                    rowGap: hp(1.8),
+                    marginBottom: hp(2),
+                  }}
+                >
+                  {budgetList.map((budget, ind) => (
+                    <BudgetTemplate {...budget} key={ind} />
+                  ))}
                 </View>
               )}
               <Text
@@ -121,20 +236,42 @@ const Budget = () => {
                   label="Name"
                   placeholder="Enter Name"
                   style={styles.input}
+                  handleChange={handleBudgetNameChange}
                 />
                 <AppInput
                   label="Note"
                   placeholder="Enter Note"
                   style={styles.input}
+                  handleChange={handleBudgetNoteChange}
                 />
                 <AppInput
+                  keyboardType="numeric"
                   label="Estimated Amount"
                   placeholder="Enter estimated amount"
                   style={styles.input}
+                  handleChange={handleBudgetAmountChange}
                 />
-                <View style={styles.balanceView}>
-                  <Text style={{ fontSize: hp(1.7) }}>Balance</Text>
-                  <ArrowDownSvg height={10} width={15} />
+                <View>
+                  <View style={styles.balanceView}>
+                    <Text style={{ fontSize: hp(1.7) }}>
+                      Balance:$
+                      {!payment.length
+                        ? "0"
+                        : Number(budgetFormData.estimatedAmount) -
+                          Number(payment[0].amount)}
+                    </Text>
+                    <ArrowDownSvg height={10} width={15} />
+                  </View>
+                  {payment.length && (
+                    <View style={styles.balanceDetails}>
+                      <Text style={{ fontSize: hp(1.7), color: "#D6111A" }}>
+                        Pending:${!isChecked ? payment[0].amount : 0}
+                      </Text>
+                      <Text style={{ fontSize: hp(1.7), color: "#4CAF50" }}>
+                        Paid:${isChecked ? payment[0].amount : 0}
+                      </Text>
+                    </View>
+                  )}
                 </View>
               </View>
               <View style={styles.paymentView}>
@@ -149,7 +286,7 @@ const Budget = () => {
                   <Text style={{ fontWeight: "semibold", fontSize: hp(2.2) }}>
                     Payments
                   </Text>
-                  <PlusIcon onPress={() => setContentRender("addPayment")} />
+                  <PlusIcon onPress={handleAddPayment} />
                 </View>
                 <View
                   style={[
@@ -163,13 +300,38 @@ const Budget = () => {
                       : "",
                   ]}
                 >
-                  <Text style={{ color: "#ACACAC", fontSize: hp(1.7) }}>
-                    No payment found
-                  </Text>
+                  {!payment.length && (
+                    <Text style={{ color: "#ACACAC", fontSize: hp(1.7) }}>
+                      No payment found
+                    </Text>
+                  )}
+                  {payment.length && (
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                      {/* paddingTop: hp(1.2), */}
+                      <View
+                        style={{
+                          display: "flex",
+                          rowGap: hp(2),
+                          paddingVertical: hp(1.5),
+                        }}
+                      >
+                        {payment.map((data, ind) => (
+                          <PaymentTemplate
+                            date={data.date}
+                            amount={data.amount}
+                            name={data.name}
+                            key={ind}
+                            isChecked={isChecked}
+                            handleChecked={() => setIsChecked(!isChecked)}
+                          />
+                        ))}
+                      </View>
+                    </ScrollView>
+                  )}
                 </View>
               </View>
               <View style={styles.buttonView}>
-                <AppButton onPress={() => {}} text="Add to Budget" />
+                <AppButton onPress={handleAddBudget} text="Add to Budget" />
               </View>
             </View>
           )}
@@ -179,21 +341,29 @@ const Budget = () => {
                 label="Name"
                 placeholder="Enter Name"
                 style={styles.input}
+                handleChange={handleNameChange}
               />
               <AppInput
+                keyboardType="numeric"
                 label="Amount"
                 placeholder="Enter Amount"
                 style={styles.input}
+                handleChange={handleAmountChange}
               />
               <DateDropdownPicker
                 label="Purchase Date"
-                value="DD/MM/YY"
-                onChange={() => {}}
-                style={{ width: "100%", marginTop: hp(0.7) }}
+                value={paymentFormData.date}
+                onChange={(date) =>
+                  setPaymentFormData({ ...paymentFormData, date })
+                }
+                style={{
+                  width: "100%",
+                  marginTop: hp(0.7),
+                }}
                 fontSize={hp(1.7)}
               />
               <View style={{ marginTop: hp(4.2) }}>
-                <AppButton onPress={() => {}} text="Add to Payments" />
+                <AppButton onPress={handleButtonPress} text="Add to Payments" />
               </View>
             </View>
           )}
@@ -244,7 +414,8 @@ const styles = StyleSheet.create({
   balanceView: {
     height: hp(6),
     backgroundColor: "#fff",
-    borderRadius: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
     borderColor: "#82828270",
     borderWidth: 1,
     display: "flex",
@@ -252,6 +423,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: wp(4.3),
+    marginTop: hp(2),
+  },
+  balanceDetails: {
+    height: hp(6),
+    backgroundColor: "#fff",
+    paddingHorizontal: wp(4.3),
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: "#82828270",
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
   paymentView: {
     marginTop: hp(4.3),
@@ -261,15 +448,18 @@ const styles = StyleSheet.create({
     marginBottom: hp(2.5),
   },
   payment: {
-    height: hp(17),
+    height: hp(18),
+    // paddingBottom: hp(5),
     backgroundColor: "#fff",
     borderRadius: 8,
     borderColor: "#82828270",
     borderWidth: 1,
+    paddingHorizontal: wp(3.2),
   },
   addPaymentView: {
     display: "flex",
     rowGap: hp(3.2),
+    marginBottom: hp(20),
   },
 });
 

@@ -11,9 +11,11 @@ import {
 const TaskTemplate = ({
   taskName,
   addedNote,
+  boxColor,
 }: {
   taskName: string;
   addedNote: string;
+  boxColor?: string;
 }) => {
   const [isChecked, setIsChecked] = useState(false);
   return (
@@ -23,7 +25,7 @@ const TaskTemplate = ({
         isChecked={isChecked}
         onClick={() => setIsChecked(!isChecked)}
         style={{}}
-        checkBoxColor="#ACACAC"
+        checkBoxColor={boxColor || "#ACACAC"}
       />
       <View>
         <Text

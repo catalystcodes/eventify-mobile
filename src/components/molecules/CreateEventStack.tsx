@@ -6,6 +6,7 @@ import CreateEvent from "../../screens/CreateEvent";
 import CustomizeDetailsScreen from "../../screens/CustomizeDetailsScreen";
 import EventDetails from "../../screens/EventDetails";
 import InitialPreview from "../../screens/InitialPreview";
+import AddGuest from "../../screens/AddGuest";
 
 const Stack = createStackNavigator<EventOverviewStackParams>();
 
@@ -22,6 +23,7 @@ const CreateEventStack = () => {
         <Screen name="customizeDetails" component={CustomizeDetailsScreen} />
         <Screen name="eventDetails" component={EventDetails} />
         <Screen name="initialPreview" component={InitialPreview} />
+        <Screen name="addGuest" component={AddGuest} />
       </Navigator>
     </View>
   );

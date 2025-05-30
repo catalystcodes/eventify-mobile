@@ -16,8 +16,13 @@ import { guestsList } from "../constantData";
 import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
 import EditIcon from "../components/atoms/vectors/EditIcon";
 import GuestListCard from "../components/molecules/GuestListCard";
+import AppButton from "../components/atoms/AppButton";
+import { useNavigation } from "@react-navigation/native";
+import { EventOverviewStackParams } from "../utils/types";
 
 const InitialPreview = () => {
+  const navigation = useNavigation<EventOverviewStackParams>();
+
   const GuestList = [
     {
       guestName: "Asiyanbi Abdulmuji",
@@ -65,16 +70,22 @@ const InitialPreview = () => {
                   top: hp(4.5),
                   right: wp(0),
                 }}
+                onPress={() => {
+                  navigation.pop(2);
+                }}
               >
                 <EditIcon />
               </Pressable>
             </View>
-            <View
+            <Pressable
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "flex-end",
                 marginTop: hp(-3.5),
+              }}
+              onPress={() => {
+                navigation.goBack();
               }}
             >
               <Pressable
@@ -99,7 +110,7 @@ const InitialPreview = () => {
               >
                 Edit Details
               </Text>
-            </View>
+            </Pressable>
             <View style={styles.eventLocation}>
               <Text
                 style={{
@@ -107,7 +118,6 @@ const InitialPreview = () => {
                   fontSize: hp(3),
                   width: "90%",
                   lineHeight: hp(3.5),
-                  // marginBottom: hp(1),
                 }}
               >
                 Family Get-Together
@@ -212,10 +222,13 @@ const InitialPreview = () => {
             >
               Guest List
             </Text>
-            <View style={{ marginBottom: hp(6.5), rowGap: hp(1.3) }}>
+            <View style={{ marginBottom: hp(7.1), rowGap: hp(1.3) }}>
               {GuestList.map((guest, index) => (
                 <GuestListCard key={index} {...guest} />
               ))}
+            </View>
+            <View style={{ marginBottom: hp(2.5) }}>
+              <AppButton text="Next: Add Guests" onPress={() => {}} />
             </View>
           </View>
         </KeyboardAvoidView>

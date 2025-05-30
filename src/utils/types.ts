@@ -38,10 +38,8 @@ export type EventStackParams = {
 };
 
 export type EventOverviewStackParams = {
-  navigate(
-    arg0: string,
-    arg1: { templateId: number; name: string; image: any }
-  ): unknown;
+  pop(arg0: number): unknown;
+  navigate(arg0: string): unknown;
   createEvent: undefined;
   eventDetails: undefined;
   customizeDetails: {
@@ -49,5 +47,10 @@ export type EventOverviewStackParams = {
     name: string;
     image: any;
   };
-  initialPreview: undefined;
+  initialPreview: {
+    templateId: number;
+    name: string;
+    image: any;
+  };
+  addGuest: undefined;
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, View, Modal, Pressable } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
 import ProgressGauge from "../components/atoms/ProgressGauge";
 import {
@@ -7,8 +7,11 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import AppButton from "../components/atoms/AppButton";
+import Invitation_Preview from "../components/organisms/Invitation_Preview";
+import ModalClose from "../components/atoms/vectors/ModalClose";
 
 const ReviewAndSend = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -36,7 +39,9 @@ const ReviewAndSend = () => {
       </View>
       <View style={{ paddingHorizontal: wp(16.5), flex: 1 }}>
         <AppButton
-          onPress={() => {}}
+          onPress={() => {
+            setModalVisible(true);
+          }}
           text="Preview Invitation"
           backgroundColor="#f7efef"
           borderColor="#F0534F"
@@ -47,6 +52,45 @@ const ReviewAndSend = () => {
       <View style={{ marginBottom: hp(2.5), paddingHorizontal: wp(5.3) }}>
         <AppButton text="Send Invitation" onPress={() => {}} />
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                // padding: hp(2),
+                paddingTop: hp(4.7),
+                paddingVertical: hp(2),
+                paddingRight: wp(5.8),
+                backgroundColor: "white",
+              }}
+            >
+              <View></View>
+              <Text style={{ fontSize: 24, fontWeight: "bold" }}>Preview</Text>
+              <Pressable onPress={() => setModalVisible(false)}>
+                <ModalClose />
+              </Pressable>
+            </View>
+            <Invitation_Preview title="Preview" showPageHeader={false} />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React from "react";
 import PageHeader from "../atoms/PageHeader";
 import {
@@ -11,37 +11,41 @@ import TimerSvg from "../atoms/vectors/TimerSvg";
 import { ScrollView } from "react-native-gesture-handler";
 import GuestTemplate from "../atoms/GuestTemplate";
 import { guestsList } from "../../constantData";
+import ModalClose from "../atoms/vectors/ModalClose";
 
 interface Props {
   title: string;
+  showPageHeader?: boolean;
 }
 
-const Invitation_Preview = ({ title }: Props) => {
+const Invitation_Preview = ({ title, showPageHeader = true }: Props) => {
   return (
     <View>
       <View style={styles.headerView}>
         {/* <PageHeader /> */}
-        <PageHeader>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "90%",
-            }}
-          >
-            <Text
+        {showPageHeader && (
+          <PageHeader>
+            <View
               style={{
-                width: "85%",
-                fontSize: hp(3),
-                fontWeight: "bold",
-                textAlign: "center",
-                // marginBottom:,
+                display: "flex",
+                flexDirection: "row",
+                width: "90%",
               }}
             >
-              {title}
-            </Text>
-          </View>
-        </PageHeader>
+              <Text
+                style={{
+                  width: "85%",
+                  fontSize: hp(3),
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  // marginBottom:,
+                }}
+              >
+                {title}
+              </Text>
+            </View>
+          </PageHeader>
+        )}
       </View>
       <ScrollView bounces={false} style={{}}>
         <View style={styles.eventDetails}>
@@ -56,7 +60,6 @@ const Invitation_Preview = ({ title }: Props) => {
                 fontSize: hp(3),
                 width: "90%",
                 lineHeight: hp(3.5),
-                // marginBottom: hp(1),
               }}
             >
               Family Get-Together
@@ -116,7 +119,6 @@ const Invitation_Preview = ({ title }: Props) => {
                 “A5 Villa”, Kent Nalukettu, near Udhyan Auditorium, Vennala,
                 Kochi, Kerala-682028
               </Text>
-              1
             </View>
             <Image source={require("../../assets/Map.png")} />
           </View>
@@ -190,7 +192,7 @@ const styles = StyleSheet.create({
   },
   eventDetails: {
     marginHorizontal: wp(4.33),
-    marginVertical: hp(2.5),
+    // marginVertical: hp(2.5),
     display: "flex",
     flexDirection: "column",
     rowGap: hp(4),

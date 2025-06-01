@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import PreviewIcon from "./vectors/PreviewIcon";
 
 interface AppButtonProps {
   text: string;
@@ -14,6 +15,7 @@ interface AppButtonProps {
   icon?: React.ReactElement;
   fontSize?: number;
   fontWeight?: TextStyle["fontWeight"];
+  previewIcon?: boolean;
 }
 
 const AppButton = ({
@@ -25,6 +27,7 @@ const AppButton = ({
   icon,
   fontSize = wp(4.3),
   fontWeight = "medium",
+  previewIcon = false,
 }: AppButtonProps) => {
   return (
     <Pressable
@@ -32,6 +35,11 @@ const AppButton = ({
       onPress={onPress}
     >
       <View style={styles.content}>
+        {previewIcon && (
+          <Pressable style={{ marginRight: wp(2.6) }}>
+            <PreviewIcon />
+          </Pressable>
+        )}
         {icon && <View style={styles.iconWrapper}>{icon}</View>}
         <Text style={[styles.text, { color: textColor, fontSize, fontWeight }]}>
           {text}

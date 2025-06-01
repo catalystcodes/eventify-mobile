@@ -13,7 +13,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSContactsUsageDescription": "Eventify needs access to your contacts to add guests."
+      }
     },
     "android": {
       "adaptiveIcon": {

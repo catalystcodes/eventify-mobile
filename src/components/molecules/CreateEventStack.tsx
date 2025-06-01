@@ -9,6 +9,7 @@ import InitialPreview from "../../screens/InitialPreview";
 import AddGuest from "../../screens/AddGuest";
 import CreateContact from "../../screens/CreateContact";
 import ReviewAndSend from "../../screens/ReviewAndSend";
+import CreateEventDone from "../../screens/CreateEventDone";
 
 const Stack = createStackNavigator<EventOverviewStackParams>();
 
@@ -28,6 +29,7 @@ const CreateEventStack = () => {
         <Screen name="addGuests" component={AddGuest} />
         <Screen name="createContact" component={CreateContact} />
         <Screen name="reviewAndSend" component={ReviewAndSend} />
+        <Screen name="createEventDone" component={CreateEventDone} />
       </Navigator>
     </View>
   );

@@ -56,4 +56,5 @@ export type EventOverviewStackParams = {
   addGuests: undefined;
   createContact: undefined;
   reviewAndSend: undefined;
+  createEventDone: undefined;
 };

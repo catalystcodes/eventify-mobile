@@ -9,9 +9,11 @@ import {
 import AppButton from "../components/atoms/AppButton";
 import Invitation_Preview from "../components/organisms/Invitation_Preview";
 import ModalClose from "../components/atoms/vectors/ModalClose";
+import { useNavigation } from "@react-navigation/native";
 
 const ReviewAndSend = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation<any>();
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -50,7 +52,12 @@ const ReviewAndSend = () => {
         />
       </View>
       <View style={{ marginBottom: hp(2.5), paddingHorizontal: wp(5.3) }}>
-        <AppButton text="Send Invitation" onPress={() => {}} />
+        <AppButton
+          text="Send Invitation"
+          onPress={() => {
+            navigation.navigate("createEventDone");
+          }}
+        />
       </View>
       <Modal
         animationType="slide"
@@ -87,7 +94,10 @@ const ReviewAndSend = () => {
                 <ModalClose />
               </Pressable>
             </View>
-            <Invitation_Preview title="Preview" showPageHeader={false} />
+
+            <View style={{ marginBottom: hp(20) }}>
+              <Invitation_Preview title="Preview" showPageHeader={false} />
+            </View>
           </View>
         </View>
       </Modal>

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "eventify-mobile",
+    "name": "Eventify",
     "slug": "eventify-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,10 +23,23 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.qelixumphalanx.eventifymobile"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "owner": "qelixum-phalanx",
+    "extra": {
+      "eas": {
+        "projectId": "2b698787-9e15-45cc-8ffb-c4320fae6023"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2b698787-9e15-45cc-8ffb-c4320fae6023"
     }
   }
 }

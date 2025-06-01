@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, ViewProps } from "react-native";
 import ArrowBack from "./vectors/ArrowBack";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -8,13 +8,13 @@ import {
 } from "react-native-responsive-screen";
 import AddContact from "./vectors/AddContact";
 
-interface PageHeaderProps {
+type PageHeaderProps = ViewProps & {
   title?: string;
   edit?: string;
   showBackButton?: boolean;
   showAddCContactButton?: boolean;
   children?: React.ReactNode;
-}
+};
 
 const PageHeader: React.FC<PageHeaderProps> = ({
   title,
@@ -22,11 +22,12 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   showBackButton = true,
   showAddCContactButton = false,
   children,
+  ...others
 }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, others.style]}>
       {showAddCContactButton && (
         <Pressable
           style={{ marginLeft: wp(5.6) }}

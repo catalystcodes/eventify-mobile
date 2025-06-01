@@ -139,7 +139,7 @@ const Budget = () => {
     <View>
       <View style={styles.headerView}>
         {contentRender === "Budget" && (
-          <PageHeader>
+          <PageHeader style={{ paddingRight: "70%" }}>
             <View
               style={{
                 marginLeft: wp(7),
@@ -172,7 +172,7 @@ const Budget = () => {
         <View style={{ marginVertical: hp(3.7), marginHorizontal: wp(5.33) }}>
           {contentRender === "Budget" && (
             <View>
-              {budgetList.length && (
+              {budgetList.length > 0 && (
                 <View
                   style={{
                     display: "flex",
@@ -195,7 +195,7 @@ const Budget = () => {
               >
                 + Add Budget
               </Text>
-              {!budgetList.length && (
+              {budgetList.length < 1 && (
                 <View style={styles.noBudgetView}>
                   <Image
                     style={{ height: hp(10), width: wp(18) }}
@@ -258,14 +258,14 @@ const Budget = () => {
                   <View style={styles.balanceView}>
                     <Text style={{ fontSize: hp(1.7) }}>
                       Balance:$
-                      {!payment.length
+                      {payment.length < 1
                         ? "0"
                         : Number(budgetFormData.estimatedAmount) -
                           Number(payment[0].amount)}
                     </Text>
                     <ArrowDownSvg height={10} width={15} />
                   </View>
-                  {payment.length && (
+                  {payment.length > 0 && (
                     <View style={styles.balanceDetails}>
                       <Text style={{ fontSize: hp(1.7), color: "#D6111A" }}>
                         Pending:${!isChecked ? payment[0].amount : 0}
@@ -294,7 +294,7 @@ const Budget = () => {
                 <View
                   style={[
                     styles.payment,
-                    !payment.length
+                    payment.length < 1
                       ? {
                           display: "flex",
                           alignItems: "center",
@@ -303,12 +303,12 @@ const Budget = () => {
                       : "",
                   ]}
                 >
-                  {!payment.length && (
+                  {payment.length < 1 && (
                     <Text style={{ color: "#ACACAC", fontSize: hp(1.7) }}>
                       No payment found
                     </Text>
                   )}
-                  {payment.length && (
+                  {payment.length > 0 && (
                     <ScrollView showsVerticalScrollIndicator={false}>
                       {/* paddingTop: hp(1.2), */}
                       <View

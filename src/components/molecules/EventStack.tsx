@@ -19,7 +19,7 @@ export default function EventStack() {
         initialRouteName="events"
       >
         <Screen name="events" component={Events} />
-        <Screen name={"eventOverview"} component={EventOverview} />
+        <Screen name={"eventOverview"} component={EventOverview} options={{}} />
         <Screen name="guest_list" component={GuestList} />
         <Screen name="task_list" component={TaskList} />
         <Screen name="budget" component={Budget} />

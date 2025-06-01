@@ -23,9 +23,9 @@ interface TaskList {
 }
 
 const TaskList = () => {
-  const [addTask, setAddTask] = useState<boolean>(false);
-  const [taskList, setTaskList] = useState<TaskList[]>([]);
   const [task, setTask] = useState({ taskName: "", addedNote: "" });
+  const [taskList, setTaskList] = useState<TaskList[]>([]);
+  const [addTask, setAddTask] = useState(false);
 
   const handleAddTask = () => {
     if (task.taskName.trim().length && task.addedNote.trim().length) {
@@ -52,7 +52,7 @@ const TaskList = () => {
     <View>
       <View style={styles.headerView}>
         {!addTask && (
-          <PageHeader>
+          <PageHeader style={{ paddingRight: "70%" }}>
             <View
               style={{
                 marginLeft: wp(7),
@@ -76,7 +76,7 @@ const TaskList = () => {
       <View style={{ marginVertical: hp(3.7), marginHorizontal: wp(5.33) }}>
         {!addTask && (
           <View>
-            {taskList.length && (
+            {taskList.length > 0 && (
               <View style={styles.taskListView}>
                 {taskList.map((item, index) => (
                   <TaskTemplate {...item} key={index} />
@@ -94,7 +94,7 @@ const TaskList = () => {
               + Add Task
             </Text>
 
-            {!taskList.length && (
+            {taskList.length < 1 && (
               <View style={styles.noTaskView}>
                 <Image
                   style={{ height: hp(10), width: wp(18) }}

@@ -192,6 +192,7 @@ const styles = StyleSheet.create({
   },
   eventDetails: {
     marginHorizontal: wp(4.33),
+    paddingTop: hp(2.4),
     // marginVertical: hp(2.5),
     display: "flex",
     flexDirection: "column",

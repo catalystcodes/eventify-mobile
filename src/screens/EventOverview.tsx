@@ -150,7 +150,9 @@ const EventOverview = ({ navigation }: any) => {
             fontSize: hp(2.46),
             color: "#F0534F",
           }}
-          onPress={() => navigation.navigate("ProfileStack", { screen: "faq" })}
+          onPress={() =>
+            navigation.navigate("ProfileStack", { screen: "feedback" })
+          }
         >
           Post a Review
         </Text>

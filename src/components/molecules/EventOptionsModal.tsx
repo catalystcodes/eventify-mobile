@@ -62,13 +62,6 @@ const EventOptionsModal = ({
               <OptionsTemplate key={ind} Icon={data.Icon} text={data.text} />
             ))}
           </View>
-
-          {/* <Pressable style={[styles.options]}>
-            <BinSvg />
-            <Text style={{ fontWeight: "medium", fontSize: hp(2) }}>
-              Cancel Event
-            </Text>
-          </Pressable> */}
         </View>
       </Pressable>
     </Modal>
@@ -79,7 +72,6 @@ const styles = StyleSheet.create({
   modalView: {
     backgroundColor: "#fff",
     width: "100%",
-    // height: hp(height),
     position: "absolute",
     bottom: 0,
     borderTopRightRadius: 20,

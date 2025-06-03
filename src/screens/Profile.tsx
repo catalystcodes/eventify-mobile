@@ -34,8 +34,8 @@ const Profile = ({ navigation }: any) => {
           onPress={() => navigation.navigate("notification")}
         />
         <ProfileSection
-          text="Frequently Asked Questions"
-          onPress={() => navigation.navigate("faq")}
+          text="Feedback and Review"
+          onPress={() => navigation.navigate("feedback")}
         />
         <ProfileSection
           text="Contact Us"

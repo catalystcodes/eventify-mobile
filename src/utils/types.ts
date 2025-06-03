@@ -26,7 +26,7 @@ export type ProfileStackParams = {
   editProfile: undefined;
   contactUs: undefined;
   notifications: undefined;
-  faq: undefined;
+  feedback: undefined;
   notification: undefined;
 };
 export type EventStackParams = {

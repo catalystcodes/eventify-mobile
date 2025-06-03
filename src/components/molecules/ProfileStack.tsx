@@ -5,8 +5,9 @@ import { ProfileStackParams } from "../../utils/types";
 import Profile from "../../screens/Profile";
 import EditProfile from "../../screens/EditProfile";
 import Notifications from "../../screens/Notifications";
-import FAQ from "../../screens/FAQ";
+import FAQ from "../../screens/Feedback";
 import ContactUs from "../../screens/ContactUs";
+import Feedback from "../../screens/Feedback";
 
 const Stack = createStackNavigator<ProfileStackParams>();
 
@@ -18,7 +19,7 @@ const ProfileStack = () => {
         <Screen name="profile" component={Profile} />
         <Screen name="editProfile" component={EditProfile} />
         <Screen name="notification" component={Notifications} />
-        <Screen name="faq" component={FAQ} />
+        <Screen name="feedback" component={Feedback} />
         <Screen name="contactUs" component={ContactUs} />
       </Navigator>
     </View>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Alert,
   Image,
-  ImageSourcePropType,
   Modal,
   Pressable,
   StyleSheet,
@@ -11,7 +10,6 @@ import {
   View,
 } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
-import AddContactSvg from "../components/atoms/vectors/AddContactSvg";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,

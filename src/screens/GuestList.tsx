@@ -35,7 +35,7 @@ type GuestInfoProp = {
   info: guestDataProp[];
 };
 
-const GuestList = () => {
+const GuestList = ({ navigation }: any) => {
   const [showCancel, setShowCancel] = useState(false);
   const [guestInfo, setGuestInfo] = useState<GuestInfoProp>({
     filter: "",
@@ -118,7 +118,7 @@ const GuestList = () => {
             </Text>
 
             <Pressable style={{}}>
-              <AddContactSvg />
+              <AddContactSvg onPress={() => navigation.navigate("addGuest")} />
             </Pressable>
           </View>
         </PageHeader>

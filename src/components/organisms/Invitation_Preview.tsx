@@ -187,13 +187,11 @@ const styles = StyleSheet.create({
   headerView: {
     backgroundColor: "#fff",
     paddingTop: hp(4),
-    // paddingBottom: hp(2),
     boxShadow: "0 0 4px 0 #1D1D1D20 ",
   },
   eventDetails: {
     marginHorizontal: wp(4.33),
     paddingTop: hp(2.4),
-    // marginVertical: hp(2.5),
     display: "flex",
     flexDirection: "column",
     rowGap: hp(4),

@@ -35,6 +35,8 @@ export type EventStackParams = {
   budget: undefined;
   task_list: undefined;
   guest_list: undefined;
+  createContact: undefined;
+  addGuest: undefined;
 };
 
 export type EventOverviewStackParams = {

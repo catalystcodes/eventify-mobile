@@ -47,16 +47,16 @@ const CreateAccount = () => {
           <View style={{ rowGap: hp(1.2), marginBottom: hp(5) }}>
             <OrSection />
           </View>
-          <View>
+          <View style={{ rowGap: hp(2) }}>
             <AppInput placeholder="Enter Name" label="Name" />
-            <AppInput placeholder="Enter e-mail" label="E-mail" />
+            <AppInput placeholder="Enter Username" label="Username" />
             <AppInput
               placeholder="Enter password"
               label="Password"
               type="password"
             />
           </View>
-          <Text style={{ fontSize: wp(3.2) }}>
+          <Text style={{ fontSize: wp(3.2), marginTop: hp(1) }}>
             By creating your account, you agree to the
           </Text>
           <View

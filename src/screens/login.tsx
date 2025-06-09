@@ -73,10 +73,10 @@ const Login = ({ navigation }: any) => {
           <View style={{ rowGap: hp(1.2), marginBottom: hp(5) }}>
             <OrSection />
           </View>
-          <View>
+          <View style={{ rowGap: hp(2) }}>
             <AppInput
-              placeholder="Enter e-mail"
-              label="E-mail"
+              placeholder="Enter username"
+              label="Username"
               value={form.username}
               onChangeText={(text) =>
                 setForm((currentValue) => ({ ...currentValue, username: text }))

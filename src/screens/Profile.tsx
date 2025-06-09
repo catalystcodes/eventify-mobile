@@ -1,12 +1,30 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import ProfileSection from "../components/molecules/ProfileSection";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/authReducer";
 
 const Profile = ({ navigation }: any) => {
+  const dispatch = useDispatch();
+
+  const logoutConfirmationAlert = () => {
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to logout?",
+      [
+        {
+          text: "Cancel",
+          style: "destructive",
+        },
+        { text: "Logout", onPress: () => dispatch(logout()) },
+      ],
+      { cancelable: true }
+    );
+  };
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -41,7 +59,8 @@ const Profile = ({ navigation }: any) => {
           text="Contact Us"
           onPress={() => navigation.navigate("contactUs")}
         />
-        <ProfileSection text="Sign Out" />
+
+        <ProfileSection text="Sign Out" onPress={logoutConfirmationAlert} />
       </View>
       <View
         style={{

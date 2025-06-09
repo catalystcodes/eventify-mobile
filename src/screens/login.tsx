@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
 import {
@@ -11,10 +11,37 @@ import FaceBookIcon from "../components/atoms/vectors/FaceBookIcon";
 import OrSection from "../components/atoms/OrSection";
 import AppInput from "../components/molecules/AppInput";
 import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
-
+import { useDispatch } from "react-redux";
+import { doAPILogin } from "../service";
+import { login } from "../store/authReducer";
 const Login = ({ navigation }: any) => {
-  const handleLogin = () => {
-    navigation.navigate("appBottomTab");
+  const [form, setForm] = useState({ username: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  // const handleLogin = () => {
+  //   navigation.navigate("appBottomTab");
+  // };
+  const disableButton =
+    form.username.trim() === "" || form.password.trim() === "" || isLoading;
+
+  const handleLogin = async () => {
+    if (disableButton) return;
+    setIsLoading(true);
+    try {
+      // const data = await doLogin(form);
+      const data = await doAPILogin(form);
+      // if (data) {
+      //   setUserInfo(form.username);
+      // }
+      console.log({ data });
+      if (data) {
+        dispatch(login(data));
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <View style={styles.container}>
@@ -47,11 +74,22 @@ const Login = ({ navigation }: any) => {
             <OrSection />
           </View>
           <View>
-            <AppInput placeholder="Enter e-mail" label="E-mail" />
+            <AppInput
+              placeholder="Enter e-mail"
+              label="E-mail"
+              value={form.username}
+              onChangeText={(text) =>
+                setForm((currentValue) => ({ ...currentValue, username: text }))
+              }
+            />
             <AppInput
               placeholder="Enter password"
               label="Password"
               type="password"
+              value={form.password}
+              onChangeText={(text) =>
+                setForm((currentValue) => ({ ...currentValue, password: text }))
+              }
             />
           </View>
 

@@ -27,7 +27,7 @@ const AppRoutes = () => {
     <View style={styles.container}>
       <Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="appBottomTab"
+        // initialRouteName=""
       >
         {isLoggedIn ? (
           <>

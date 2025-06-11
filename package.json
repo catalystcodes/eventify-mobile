@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "check-dependencies": "npx expo install --check",
     "build:apk": "eas build --profile apkbuild --platform android",
-    "update:preview": "eas update --branch preview"
+    "update:preview": "dotenv -e .env -- eas update --branch preview"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -67,6 +67,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
+    "dotenv-cli": "^8.0.0",
     "typescript": "~5.8.3"
   },
   "private": true

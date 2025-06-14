@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { persistor, store } from "../../store";
 import { PersistGate } from "redux-persist/integration/react";
 import AuthProvider from "../../context";
+import Toast from "react-native-toast-message";
 
 const AppManager = ({ children }: { children: ReactNode }) => {
   return (
@@ -22,6 +23,7 @@ const AppManager = ({ children }: { children: ReactNode }) => {
             </SafeAreaProvider>
           </AuthProvider>
         </PersistGate>
+        <Toast />
       </Provider>
     </GestureHandlerRootView>
   );

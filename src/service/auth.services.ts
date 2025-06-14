@@ -11,5 +11,6 @@ export const doAPILogin = async (loginPayload: {
     return data;
   } catch (error) {
     console.log(JSON.stringify(error, null, 2));
+    throw error;
   }
 };

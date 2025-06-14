@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import PageHeader from "../components/atoms/PageHeader";
 import {
   heightPercentageToDP as hp,
@@ -14,31 +14,61 @@ import KeyboardAvoidView from "../components/molecules/KeyboardAvoidView";
 import { useDispatch } from "react-redux";
 import { doAPILogin } from "../service";
 import { login } from "../store/authReducer";
+import Toast from "react-native-toast-message";
 const Login = ({ navigation }: any) => {
   const [form, setForm] = useState({ username: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
-  // const handleLogin = () => {
-  //   navigation.navigate("appBottomTab");
-  // };
   const disableButton =
     form.username.trim() === "" || form.password.trim() === "" || isLoading;
 
+  // const handleLogin = async () => {
+  //   if (disableButton) return;
+  //   setIsLoading(true);
+  //   try {
+  //     // const data = await doLogin(form);
+  //     const data = await doAPILogin(form);
+  //     // if (data) {
+  //     //   setUserInfo(form.username);
+  //     // }
+  //     console.log({ data });
+  //     if (data) {
+  //       dispatch(login(data));
+  //     }
+  //   } catch (error: any) {
+  //     Toast.show({
+  //       type: "error",
+  //       text1: "Login Failed",
+  //       text2:
+  //         error?.response?.data?.message ||
+  //         "Something went wrong. Please try again.",
+  //     });
+  //   }
+  //   {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleLogin = async () => {
     if (disableButton) return;
     setIsLoading(true);
     try {
-      // const data = await doLogin(form);
       const data = await doAPILogin(form);
-      // if (data) {
-      //   setUserInfo(form.username);
-      // }
-      console.log({ data });
       if (data) {
         dispatch(login(data));
+        Toast.show({
+          type: "success",
+          text1: "Login Successful",
+          text2: `Welcome back, ${form.username}!`,
+        });
       }
-    } catch (error) {
+    } catch (error: any) {
+      Toast.show({
+        type: "error",
+        text1: "Login Failed",
+        text2:
+          error?.response?.data?.message || "Invalid username or password.",
+      });
     } finally {
       setIsLoading(false);
     }

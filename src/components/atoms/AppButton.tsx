@@ -16,6 +16,7 @@ interface AppButtonProps {
   fontSize?: number;
   fontWeight?: TextStyle["fontWeight"];
   previewIcon?: boolean;
+  disabled?: boolean;
 }
 
 const AppButton = ({
@@ -28,17 +29,26 @@ const AppButton = ({
   fontSize = wp(4.3),
   fontWeight = "medium",
   previewIcon = false,
+  disabled = false, // default false
 }: AppButtonProps) => {
   return (
     <Pressable
-      style={[styles.container, { backgroundColor, borderColor }]}
-      onPress={onPress}
+      style={[
+        styles.container,
+        {
+          backgroundColor: disabled ? "#ccc" : backgroundColor,
+          borderColor,
+          opacity: disabled ? 0.6 : 1,
+        },
+      ]}
+      onPress={!disabled ? onPress : undefined}
+      disabled={disabled}
     >
       <View style={styles.content}>
         {previewIcon && (
-          <Pressable style={{ marginRight: wp(2.6) }}>
+          <View style={{ marginRight: wp(2.6) }}>
             <PreviewIcon />
-          </Pressable>
+          </View>
         )}
         {icon && <View style={styles.iconWrapper}>{icon}</View>}
         <Text style={[styles.text, { color: textColor, fontSize, fontWeight }]}>

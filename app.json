@@ -6,40 +6,57 @@
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./src/assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
         "NSContactsUsageDescription": "Eventify needs access to your contacts to add guests."
       }
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "package": "com.qelixumphalanx.eventifymobile"
     },
+
     "web": {
       "favicon": "./src/assets/favicon.png"
     },
+
     "owner": "qelixum-phalanx",
+
     "extra": {
       "eas": {
         "projectId": "2b698787-9e15-45cc-8ffb-c4320fae6023"
       }
     },
+
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
+
     "updates": {
       "url": "https://u.expo.dev/2b698787-9e15-45cc-8ffb-c4320fae6023"
-    }
+    },
+
+    "plugins": [
+      "@react-native-community/datetimepicker",
+      "expo-font",
+      "expo-web-browser",
+      "expo-image",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-status-bar"
+    ]
   }
 }
